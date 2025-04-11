@@ -75,7 +75,7 @@ end
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Universal ScriptGui: By TheNewScripter",
+   Name = "Universal ScriptGui: By TheNewScripterA",
    Icon = 0,
    LoadingTitle = "LOADING...",
    LoadingSubtitle = "by TheNewScripter",
