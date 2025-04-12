@@ -707,7 +707,7 @@ local Toggle = Tab2:CreateToggle({
    Flag = "FlyToggle",
    Callback = function(Value)
      if Value then
-       Frame.Active = true
+       Frame.Active = false
        Frame.Visible = true
     else
        isFly = false
