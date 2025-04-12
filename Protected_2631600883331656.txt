@@ -109,7 +109,8 @@ local Window = Rayfield:CreateWindow({
 local Tab = Window:CreateTab("Visual", 4483362458)
 local Tab2 = Window:CreateTab("LocalPlayer", 4483362458)
 local Tab3 = Window:CreateTab("Animations", 4483362458)
-local Tab4 = Window:CreateTab("DestroyGui", 4483362458)
+local Tab4 = Window:CreateTab("Games IN PROGRESS", 4483362458)
+local Tab5 = Window:CreateTab("DestroyGui", 4483362458)
 
 
 
@@ -142,7 +143,7 @@ end
 
 
 
-local hitboxSize = Vector3.new(20,20,20)
+local hitboxSize = Vector3.new(30,30,30)
 local OriginHitboxSize = Vector3.new(1.659999966621399, 2.0999999046325684, 0.9200000166893005)
 
 local function HitboxExpander()
@@ -156,6 +157,7 @@ local function HitboxExpander()
           hrp.CanCollide = false
           hrp.Size = hitboxSize
           hrp.Shape = Enum.PartType.Ball
+          hrp.Material = Enum.Material.Neon
           hrp.Color = Color3.fromRGB(28,240,22)
           hrp.Transparency = 0.5
         end
@@ -565,7 +567,7 @@ end
 
 
 
-local Button = Tab4:CreateButton({
+local Button = Tab5:CreateButton({
    Name = "DestroyGui",
    Callback = function()
    Rayfield:Destroy()
@@ -782,5 +784,138 @@ local Toggle = Tab:CreateToggle({
      else
        UnFullB()
      end
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "CatWalk Anim",
+   Callback = function()
+   ChangeAnim(133806214992291,109168724482748,81024476153754,116936326516985,92294537340807,134591743181628)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "Robot Anim",
+   Callback = function()
+   ChangeAnim(10921248039,10921255446,10921250460,10921252123,10921251156,10921253142)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "Adidas Sports Anim",
+   Callback = function()
+   ChangeAnim(18537376492,18537392113,18537384940,18537380791,18537367238,18537389531)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "Eldders Anim",
+   Callback = function()
+   ChangeAnim(10921101664,10921111375,10921104374,10921107367,10921105765,10921108971)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "Old School Anim",
+   Callback = function()
+   ChangeAnim(10921230744,10921244891,10921240218,10921242013,10921241244,10921243048)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "Comics Anim",
+   Callback = function()
+   ChangeAnim(10921071918,10921082452,10921076136,10921078135,10921077030,10921079380)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "Ninja Anim",
+   Callback = function()
+   ChangeAnim(10921155160,10921162768,10921157929,10921160088,10921159222,10921161002)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "SuperHeroe Anim",
+   Callback = function()
+   ChangeAnim(10921288909,10921298616,10921291831,10921294559,10921293373,10921295495)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "Vampire Anim",
+   Callback = function()
+   ChangeAnim(10921315373,10921326949,10921320299,10921322186,10921321317,10921324408)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "Wolfman Anim",
+   Callback = function()
+   ChangeAnim(10921330408,10921342074,10921336997,1083218792,10921337907,10921340419)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "Knight Animation",
+   Callback = function()
+   ChangeAnim(10921117521,10921127095,10921121197,10921123517,10921122579,10921125160)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "NFL Anim",
+   Callback = function()
+   ChangeAnim(92080889861410,110358958299415,117333533048078,119846112151352,129773241321032,132697394189921)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "No Boundaries Anim",
+   Callback = function()
+   ChangeAnim(18747067405,18747074203,18747070484,18747069148,18747062535,18747073181)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "astronaunt Anim",
+   Callback = function()
+   ChangeAnim(10921034824,10921046031,10921039308,10921042494,10921040576,10921044000)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "Wicked Popular Anim",
+   Callback = function()
+   ChangeAnim(118832222982049,92072849924640,72301599441680,104325245285198,121152442762481,99384245425157)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "Bold Anim",
+   Callback = function()
+   ChangeAnim(16738333868,16738340646,16738337225,16738336650,16738333171,16738339158)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "Pirate Anim",
+   Callback = function()
+   ChangeAnim(750781874,750785693,750783738,750782230,750780242,750784579)
+   end,
+})
+
+local Button = Tab3:CreateButton({
+   Name = "RTHRO Anim",
+   Callback = function()
+   ChangeAnim(10921259953,10921269718,10921261968,10921263860,10921262864,10921264784)
+   end,
+})
+
+local Button = Tab4:CreateButton({
+   Name = "BrookHaven IN PROGRESS",
+   Callback = function()
+     print("Spanish: Espera la actualizacion de Brookhaven : English: Wait For The Update Of BrookHaven")
    end,
 })
