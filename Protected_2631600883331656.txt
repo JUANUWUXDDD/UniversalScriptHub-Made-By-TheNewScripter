@@ -1,49 +1,46 @@
 local customTheme = {
-    TextColor = Color3.fromRGB(170, 255, 85),  -- Verde claro/oscuro
+    TextColor = Color3.fromRGB(120, 120, 200),  -- Azul lavanda
 
-    Background = Color3.fromRGB(10, 10, 10),
-    Topbar = Color3.fromRGB(15, 15, 15),
-    Shadow = Color3.fromRGB(0, 0, 0),
+    Background = Color3.fromRGB(245, 245, 250),  -- Gris muy claro con toque violeta
+    Topbar = Color3.fromRGB(230, 230, 240),      -- Gris pastel
+    Shadow = Color3.fromRGB(180, 180, 200),
 
-    NotificationBackground = Color3.fromRGB(0, 0, 0),
-    NotificationActionsBackground = Color3.fromRGB(50, 50, 50),
+    NotificationBackground = Color3.fromRGB(235, 235, 245),
+    NotificationActionsBackground = Color3.fromRGB(210, 210, 230),
 
-    TabBackground = Color3.fromRGB(0, 0, 0),
-    TabStroke = Color3.fromRGB(0, 255, 0),
-    TabBackgroundSelected = Color3.fromRGB(0, 255, 0),
-    TabTextColor = Color3.fromRGB(170, 255, 85),  -- Verde claro/oscuro para el texto en las pestañas
-    SelectedTabTextColor = Color3.fromRGB(0, 0, 0),
+    TabBackground = Color3.fromRGB(240, 240, 250),
+    TabStroke = Color3.fromRGB(180, 160, 255),
+    TabBackgroundSelected = Color3.fromRGB(200, 180, 255),
+    TabTextColor = Color3.fromRGB(120, 120, 200),
+    SelectedTabTextColor = Color3.fromRGB(255, 255, 255),
 
-    ElementBackground = Color3.fromRGB(0, 0, 0),
-    ElementBackgroundHover = Color3.fromRGB(30, 30, 30),
-    SecondaryElementBackground = Color3.fromRGB(10, 10, 10),
-    ElementStroke = Color3.fromRGB(0, 255, 0),
-    SecondaryElementStroke = Color3.fromRGB(0, 255, 0),
+    ElementBackground = Color3.fromRGB(250, 250, 255),
+    ElementBackgroundHover = Color3.fromRGB(230, 230, 250),
+    SecondaryElementBackground = Color3.fromRGB(240, 240, 255),
+    ElementStroke = Color3.fromRGB(200, 180, 255),
+    SecondaryElementStroke = Color3.fromRGB(190, 170, 255),
 
-    SliderBackground = Color3.fromRGB(0, 255, 0),
-    SliderProgress = Color3.fromRGB(0, 255, 0),
-    SliderStroke = Color3.fromRGB(0, 200, 0),
+    SliderBackground = Color3.fromRGB(220, 190, 255),
+    SliderProgress = Color3.fromRGB(180, 140, 255),
+    SliderStroke = Color3.fromRGB(160, 120, 240),
 
-    ToggleBackground = Color3.fromRGB(10, 10, 10),
-    ToggleEnabled = Color3.fromRGB(0, 255, 0),
-    ToggleDisabled = Color3.fromRGB(50, 50, 50),
-    ToggleEnabledStroke = Color3.fromRGB(0, 200, 0),
-    ToggleDisabledStroke = Color3.fromRGB(100, 100, 100),
-    ToggleEnabledOuterStroke = Color3.fromRGB(0, 255, 0),
-    ToggleDisabledOuterStroke = Color3.fromRGB(50, 50, 50),
+    ToggleBackground = Color3.fromRGB(240, 240, 255),
+    ToggleEnabled = Color3.fromRGB(180, 240, 200),
+    ToggleDisabled = Color3.fromRGB(220, 220, 230),
+    ToggleEnabledStroke = Color3.fromRGB(120, 200, 160),
+    ToggleDisabledStroke = Color3.fromRGB(180, 180, 190),
+    ToggleEnabledOuterStroke = Color3.fromRGB(140, 230, 170),
+    ToggleDisabledOuterStroke = Color3.fromRGB(200, 200, 210),
 
-    DropdownSelected = Color3.fromRGB(0, 0, 0),
-    DropdownUnselected = Color3.fromRGB(30, 30, 30),
+    DropdownSelected = Color3.fromRGB(230, 210, 250),
+    DropdownUnselected = Color3.fromRGB(245, 240, 255),
 
-    InputBackground = Color3.fromRGB(0, 0, 0),
-    InputStroke = Color3.fromRGB(0, 255, 0),
-    PlaceholderColor = Color3.fromRGB(100, 100, 100),
+    InputBackground = Color3.fromRGB(250, 250, 255),
+    InputStroke = Color3.fromRGB(200, 180, 255),
+    PlaceholderColor = Color3.fromRGB(160, 160, 180),
 
-    -- Texto visible dentro de los sliders (el valor)
-    SliderValueTextColor = Color3.fromRGB(255, 255, 255),  -- Texto en blanco para que resalte
-
-    -- Cambiar color del texto sobre el slider para que se vea bien
-    SliderTextBackground = Color3.fromRGB(0, 0, 0),  -- Fondo negro en el texto para que se vea sin que el progreso tape
+    SliderValueTextColor = Color3.fromRGB(80, 80, 120),
+    SliderTextBackground = Color3.fromRGB(255, 255, 255),
 }
 
 
@@ -56,6 +53,7 @@ local char = localPlayer.Character
 local Animate = char:WaitForChild("Animate")
 local hm = char:WaitForChild("Humanoid")
 local h = char:WaitForChild("HumanoidRootPart")
+local Head = char:WaitForChild("Head")
 local camera = game.Workspace.CurrentCamera
 
 local function reconnect()
@@ -75,10 +73,10 @@ end
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Universal ScriptGui: By TheNewScripter",
+   Name = "NullModz: By NullScripter",
    Icon = 0,
    LoadingTitle = "LOADING...",
-   LoadingSubtitle = "by TheNewScripter",
+   LoadingSubtitle = "by NullScripter",
    Theme = customTheme,
    DisableRayfieldPrompts = false,
    DisableBuildWarnings = false,
@@ -106,816 +104,324 @@ local Window = Rayfield:CreateWindow({
 
 
 --//Paginas
-local Tab = Window:CreateTab("Visual", 4483362458)
+local Tab1 = Window:CreateTab("Players", 4483362458)
 local Tab2 = Window:CreateTab("LocalPlayer", 4483362458)
-local Tab3 = Window:CreateTab("Animations", 4483362458)
-local Tab4 = Window:CreateTab("Games IN PROGRESS", 4483362458)
+local Tab3 = Window:CreateTab("Combat", 4483362458)
+local Tab4 = Window:CreateTab("Others", 4483362458)
 local Tab5 = Window:CreateTab("DestroyGui", 4483362458)
 
+--//ScriptingVars
+local TargetName = " "
 
 
---//Funciones
-local function WallHack()
-  for _, p in ipairs(Players:GetPlayers()) do
-    if p == Players.LocalPlayer then
-      print("LocalPlayer Excluido")
-    else
-      local c = p.Character
-      if c then
-        local hack = Instance.new("Highlight", c)
-        hack.FillColor = Color3.fromRGB(0,255,0)
-        hack.OutlineColor = Color3.fromRGB(0,255,0)
-      end
-    end
-  end
-end
+--//Global Functions
 
-local function unWallHack()
-  for _, p in ipairs(Players:GetPlayers()) do
-    local c = p.Character
-    if c then
-      if c:FindFirstChild("Highlight") then
-        c.Highlight:Destroy()
-      end
-    end
-  end
-end
-
-
-
-local hitboxSize = Vector3.new(30,30,30)
-local OriginHitboxSize = Vector3.new(1.659999966621399, 2.0999999046325684, 0.9200000166893005)
-
-local function HitboxExpander()
-      for _, p in ipairs(Players:GetPlayers()) do
-        if p == Players.LocalPlayer then
-          print("local excluido")
-        else
-        local c = p.Character
-        if c then
-          local hrp = c:WaitForChild("HumanoidRootPart")
-          hrp.CanCollide = false
-          hrp.Size = hitboxSize
-          hrp.Shape = Enum.PartType.Ball
-          hrp.Material = Enum.Material.Neon
-          hrp.Color = Color3.fromRGB(28,240,22)
-          hrp.Transparency = 0.5
+local function FindPlayer(name)
+    name = name:lower()
+    for _, player in pairs(game.Players:GetPlayers()) do
+        if player.Name:lower():find(name) or player.DisplayName:lower():find(name) then
+            return player
         end
+    end
+    return nil
+end
+
+--//functionsTab1
+
+local function TpToPlayerWithName()
+  local Target = FindPlayer(TargetName)
+  if Target then
+    local TargetChar = Target.Character
+    if TargetChar then
+      local TargetHRP = TargetChar:FindFirstChild("HumanoidRootPart")
+      if TargetHRP and h then
+        h.CFrame = TargetHRP.CFrame
       end
     end
+  end
+end
+
+local isBang = false
+
+local function Bang()
+  isBang = true
+  local Target = FindPlayer(TargetName)
+  if Target then
+    local TargetChar = Target.Character
+    if TargetChar then
+      local TargetHRP = TargetChar:FindFirstChild("HumanoidRootPart")
+      if TargetHRP and h then
+        task.spawn(function()
+          while isBang do
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,1)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,2)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,3)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,4)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,5)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,6)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,5)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,4)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,3)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,2)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,1)
+            wait(0.02)
+          end
+        end)
+      end
+    end
+  end
+end
+
+local function unBang()
+  if isBang then
+    isBang = false
+  end
+end
+
+local GetBangState = false
+
+local function GetBangg()
+  local Target = FindPlayer(TargetName)
+  if Target then
+    local TargetChar = Target.Character
+    if TargetChar then
+      local TargetHRP = TargetChar:FindFirstChild("HumanoidRootPart")
+      GetBangState = true
+    if TargetHRP and h then
+      task.spawn(function()
+          while GetBangState do
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-1)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-2)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-3)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-4)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-5)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-6)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-5)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-4)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-3)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-2)
+            wait(0.02)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-1)
+            wait(0.02)
+          end
+        end)
+    end
+  end
+end
 end
 
 
+local function unGetBangg()
+  if GetBangState then
+    GetBangState = false
+  end
+end
 
-local function unHitboxExpander()
+
+local function Espectate()
+  local Target = FindPlayer(TargetName)
+  if Target then
+    local TargetChar = Target.Character
+    if TargetChar then
+      local TargetHead = TargetChar:FindFirstChild("Head")
+      if TargetHead then
+        camera.CameraSubject = TargetHead
+      end
+    end
+  end
+end
+
+local function unSpectate()
+  camera.CameraSubject = Head
+end
+
+
+local function Locate()
+  local Target = FindPlayer(TargetName)
+  if Target then
+    local TargetChar = Target.Character
+    if TargetChar then
+      local luz = TargetChar:FindFirstChild("Highlight")
+      if not luz then
+      local ESP = Instance.new("Highlight")
+      ESP.OutlineColor = Color3.fromRGB(255,0,0)
+      ESP.FillColor = Color3.fromRGB(255,255,255)
+      ESP.Parent = TargetChar
+    end
+    end
+  end
+end
+
+local function UnLocate()
+  local Target = FindPlayer(TargetName)
+  if Target then
+    local TargetChar = Target.Character
+    if TargetChar then
+      local ESP = TargetChar:FindFirstChild("Highlight")
+      if ESP then
+        ESP:Destroy()
+      end
+    end
+  end
+end
+
+local function locateALL()
   for _, p in ipairs(Players:GetPlayers()) do
-    local c = p.Character
-    if c then
-      local hrp = c:WaitForChild("HumanoidRootPart")
-      hrp.Size = OriginHitboxSize
-      hrp.Shape = Enum.PartType.Block
-      hrp.Transparency = 1
-    end
-  end
-end
-
-
-
-local function Day()
-  iluminacion.TimeOfDay = "14:00:00"
-  iluminacion.Brightness = 0.5
-  iluminacion.FogEnd = 1000
-end
-
-
-local function Night()
-  iluminacion.TimeOfDay = "00:00:00"
-  iluminacion.Brightness = 0.5
-  iluminacion.FogEnd = 1000
-end
-
-
-
-local function xray()
-  for _, p in ipairs(workspace:GetDescendants()) do
-    if p:IsA("Part") then
-      p.Transparency = 0.5
-    end
-  end
-  for _, pl in ipairs(Players:GetPlayers()) do
-  local c = pl.Character
-  if c then
-    for _, ch in ipairs(c:GetChildren()) do
-      if ch:IsA("Part") then
-        if ch.Name == "HumanoidRootPart" then
-          ch.Transparency = 1
-        else
-        ch.Transparency = 0
-        end
-      end
-    end
-  end
-end
-end
-
-
-
-local function unXray()
-  for _, p in ipairs(workspace:GetDescendants()) do
-    if p:IsA("Part") then
-      if p.Name == "HumanoidRootPart" then
-        p.Transparency = 1
-      else
-    p.Transparency = 0
+    local pChar = p.Character
+    if pChar then
+      local luz = pChar:FindFirstChild("Highlight")
+      if not luz then
+        local ESP = Instance.new("Highlight")
+        ESP.OutlineColor = Color3.fromRGB(255,0,0)
+        ESP.FillColor = Color3.fromRGB(255,255,255)
+        ESP.Parent = pChar
       end
     end
   end
 end
 
-local TpWalkStatus = false
-
-local function TpWalk()
-  TpWalkStatus = true
-  task.spawn(function()
-    while TpWalkStatus do
-      char = localPlayer.Character
-      local velocidad = h.Velocity.Magnitude
-      if velocidad > 1  then
-        h.CFrame = h.CFrame * CFrame.new(0,0,-3)
-      else
-        print("esperando a que el jugador se mueva")
-      end
-      task.wait(0.001)
-    end
-  end)
-end
-
-
-
-local function unTpWalk()
-  TpWalkStatus = false
-end
-
-
-
-local nearestPlayer = nil
-local aim = false
-
-
-local function findnearestPlayer()
-  local closestPlayer = nil
-  local closestDistance = math.huge  -- Un valor muy grande para empezar
+local function UnLocateAll()
   for _, p in ipairs(Players:GetPlayers()) do
-    if p ~= Players.LocalPlayer then
-      local c = p.Character
-      if c then
-        local hrp = c:WaitForChild("HumanoidRootPart")
-        local distance = (h.Position - hrp.Position).Magnitude
-        if distance < closestDistance and distance <= 100 then
-          closestPlayer = p
-          closestDistance = distance
-        end
+    local pChar = p.Character
+    if pChar then
+      local luz = pChar:FindFirstChild("Highlight")
+      if luz then
+        luz:Destroy()
       end
     end
   end
-  return closestPlayer
 end
-
-local function aimbot()
-  aim = true
-  task.spawn(function()
-    while aim do
-      char = localPlayer.Character
-      local enemy = findnearestPlayer()  -- Encontrar al jugador más cercano
-      if enemy then
-        local enemyChar = enemy.Character
-        if enemyChar then
-          camera.CFrame = CFrame.lookAt(camera.CFrame.Position, enemyChar.HumanoidRootPart.Position)
-          h.CFrame = CFrame.lookAt(h.Position, enemyChar.HumanoidRootPart.Position)  -- Girar hacia el jugador
-        end
-      end
-      wait(0.001)  -- Ajusta la frecuencia de actualización
-    end
-  end)
-end
-
-local function unAim()
-  aim = false
-end
-
-
-
-
-
-
-
-
-
-
-local isFly = false
-local FlySpeed = 1
-
-
-local screenG = Instance.new("ScreenGui")
-screenG.Parent = pGui
-
-local Frame = Instance.new("Frame")
-Frame.Size = UDim2.new(0.3, 0, 0.5, 0)
-Frame.Position = UDim2.new(0.5, -620, 0.5, -57)
-Frame.BackgroundColor3 = Color3.new(1, 1, 1)
-Frame.BorderColor3 = Color3.new(1, 1, 1)
-Frame.BorderSizePixel = 1
-Frame.Active = false
-Frame.Visible = false
-Frame.BackgroundTransparency = 1
-Frame.Draggable = false
-Frame.Parent = screenG
-
-
-local AdelanteButton = Instance.new("TextButton")
-AdelanteButton.Size = UDim2.new(0.3, 0, 0.35, 0)
-AdelanteButton.Position = UDim2.new(0.35, 0, 0.001, 0)
-AdelanteButton.BackgroundColor3 = Color3.new(0, 0, 0)
-AdelanteButton.BorderColor3 = Color3.new(1,1,1)
-AdelanteButton.TextSize = 20
-AdelanteButton.BorderSizePixel = 1
-AdelanteButton.Text = "👆"
-AdelanteButton.BackgroundTransparency = 0 
-AdelanteButton.TextColor3 = Color3.new(255, 255, 255)
-AdelanteButton.Font = Enum.Font.Code
-AdelanteButton.Parent = Frame
-
-
-local AtrasButton = Instance.new("TextButton")
-AtrasButton.Size = UDim2.new(0.3, 0, 0.35, 0)
-AtrasButton.Position = UDim2.new(0.35, 0, 0.8, 0)
-AtrasButton.BackgroundColor3 = Color3.new(0, 0, 0)
-AtrasButton.BorderColor3 = Color3.new(1,1,1)
-AtrasButton.TextSize = 20
-AtrasButton.BorderSizePixel = 1
-AtrasButton.Text = "👇"
-AtrasButton.BackgroundTransparency = 0 
-AtrasButton.TextColor3 = Color3.new(255, 255, 255)
-AtrasButton.Font = Enum.Font.Code
-AtrasButton.Parent = Frame
-
-
-local DerechaButton = Instance.new("TextButton")
-DerechaButton.Size = UDim2.new(0.3, 0, 0.35, 0)
-DerechaButton.Position = UDim2.new(0.7, 0, 0.4, 0)
-DerechaButton.BackgroundColor3 = Color3.new(0, 0, 0)
-DerechaButton.BorderColor3 = Color3.new(1,1,1)
-DerechaButton.TextSize = 20
-DerechaButton.BorderSizePixel = 1
-DerechaButton.Text = "👉"
-DerechaButton.BackgroundTransparency = 0 
-DerechaButton.TextColor3 = Color3.new(255, 255, 255)
-DerechaButton.Font = Enum.Font.Code
-DerechaButton.Parent = Frame
-
-
-local IzquierdaButton = Instance.new("TextButton")
-IzquierdaButton.Size = UDim2.new(0.3, 0, 0.35, 0)
-IzquierdaButton.Position = UDim2.new(0.001, 0, 0.4, 0)
-IzquierdaButton.BackgroundColor3 = Color3.new(0, 0, 0)
-IzquierdaButton.BorderColor3 = Color3.new(1,1,1)
-IzquierdaButton.TextSize = 20
-IzquierdaButton.BorderSizePixel = 1
-IzquierdaButton.Text = "👈"
-IzquierdaButton.BackgroundTransparency = 0 
-IzquierdaButton.TextColor3 = Color3.new(255, 255, 255)
-IzquierdaButton.Font = Enum.Font.Code
-IzquierdaButton.Parent = Frame
-
-
-local ToggleFlyButton = Instance.new("TextButton")
-ToggleFlyButton.Size = UDim2.new(0.3, 0, 0.35, 0)
-ToggleFlyButton.Position = UDim2.new(0.35, 0, 0.4, 0)
-ToggleFlyButton.BackgroundColor3 = Color3.new(0, 0, 0)
-ToggleFlyButton.BorderColor3 = Color3.new(1,1,1)
-ToggleFlyButton.TextSize = 20
-ToggleFlyButton.BorderSizePixel = 1
-ToggleFlyButton.Text = "Fly = "
-ToggleFlyButton.BackgroundTransparency = 0 
-ToggleFlyButton.TextColor3 = Color3.new(255, 255, 255)
-ToggleFlyButton.Font = Enum.Font.Code
-ToggleFlyButton.Parent = Frame
-
-local bp = Instance.new("BodyPosition")
-bp.MaxForce = Vector3.new(1000000,1000000,1000000)
-bp.P = 50000
-bp.D = 1000
-bp.Position = h.Position
-bp.Parent = nil
-
-
-
-local function rotate()
-  isFly = true
-  task.spawn(function()
-    while isFly do
-  h.CFrame = CFrame.new(h.Position, h.Position + camera.CFrame.LookVector)
-  wait(0.001)
-    end
-  end)
-end
-
-local function move(direccion)
-    bp.Position = h.Position + (h.CFrame:VectorToWorldSpace(direccion))
-end
-
-
-local isMove = false
-
-
-AdelanteButton.MouseButton1Down:Connect(function()
-  isMove = true
-  task.spawn(function()
-    while isMove do
-  move(Vector3.new(0,0,-FlySpeed))
-     wait(0.001)
-    end
-  end)
-end)
-
-AdelanteButton.MouseButton1Up:Connect(function()
-  isMove = false
-end)
-
-
-AtrasButton.MouseButton1Down:Connect(function()
-  isMove = true
-  task.spawn(function()
-    while isMove do
-  move(Vector3.new(0,0,FlySpeed))
-     wait(0.001)
-    end
-  end)
-end)
-
-AtrasButton.MouseButton1Up:Connect(function()
-  isMove = false
-end)
-
-
-DerechaButton.MouseButton1Down:Connect(function()
-  isMove = true
-  task.spawn(function()
-    while isMove do
-  move(Vector3.new(FlySpeed,0,0))
-     wait(0.001)
-    end
-  end)
-end)
-
-DerechaButton.MouseButton1Up:Connect(function()
-  isMove = false
-end)
-
-IzquierdaButton.MouseButton1Down:Connect(function()
-  isMove = true
-  task.spawn(function()
-    while isMove do
-  move(Vector3.new(-FlySpeed,0,0))
-     wait(0.001)
-    end
-  end)
-end)
-
-IzquierdaButton.MouseButton1Up:Connect(function()
-  isMove = false
-end)
-
-
-
-
-ToggleFlyButton.MouseButton1Click:Connect(function()
-  if isFly == false then
-     isFly = true
-     hm.PlatformStand = true
-     bp.Position = h.Position + Vector3.new(0,7,0)
-     bp.Parent = h
-     ToggleFlyButton.Text = "Fly On"
-     rotate()
-  elseif isFly == true then
-    isFly = false
-    hm.PlatformStand = false
-    bp.Parent = nil
-    ToggleFlyButton.Text = "Fly Off"
-  end
-end)
-
-
-
-
-
-
-local function ClearAnimSpace()
-  Animate.idle:ClearAllChildren()
-  Animate.walk:ClearAllChildren()
-  Animate.run:ClearAllChildren()
-  Animate.jump:ClearAllChildren()
-  Animate.fall:ClearAllChildren()
-  Animate.swim:ClearAllChildren()
-end
-
-local function ChangeAnim(Idle,Walk,Run,Jump,Fall,Swim)
-  
-  ClearAnimSpace()
-  
-  wait(0.2)
-  
-  local anim = Instance.new("Animation")
-  anim.AnimationId = "rbxassetid://".. Idle
-  anim.Parent = Animate.idle
-  
-  local anim2 = Instance.new("Animation")
-  anim2.AnimationId = "rbxassetid://".. Walk
-  anim2.Parent = Animate.walk
-  
-  local anim3 = Instance.new("Animation")
-  anim3.AnimationId = "rbxassetid://".. Run
-  anim3.Parent = Animate.run
-  
-  local anim4 = Instance.new("Animation")
-  anim4.AnimationId = "rbxassetid://".. Jump
-  anim4.Parent = Animate.jump
-  
-  local anim5 = Instance.new("Animation")
-  anim5.AnimationId = "rbxassetid://".. Fall
-  anim5.Parent = Animate.fall
-  
-  local anim6 = Instance.new("Animation")
-  anim6.AnimationId = "rbxassetid://".. Swim
-  anim6.Parent = Animate.swim
-  
-end
-
-
-local function FullB()
-  iluminacion.Brightness = 10
-end
-
-local function UnFullB()
-  iluminacion.Brightness = 2
-end
-
-
-
-
---// botones y toggles y sliders
-
-
-
-local Button = Tab5:CreateButton({
-   Name = "DestroyGui",
+--//Tab1
+
+local Input = Tab1:CreateInput({
+   Name = "TargetName",
+   PlaceholderText = "Ej: NullScripter123",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(text)
+      TargetName = text
+   end
+})
+
+local Teleport = Tab1:CreateButton({
+   Name = "Teleport",
    Callback = function()
-   Rayfield:Destroy()
+     TpToPlayerWithName()
    end,
 })
 
-
-
-local Toggle = Tab:CreateToggle({
-   Name = "Esp Players",
+local Bang = Tab1:CreateToggle({
+   Name = "Bang",
    CurrentValue = false,
-   Flag = "EspToggle",
+   Flag = "Toggle1",
    Callback = function(Value)
      if Value then
-       WallHack()
-    else
-       unWallHack()
+       Bang()
+      else
+      unBang()
     end
    end,
 })
 
 
-
-local Toggle = Tab2:CreateToggle({
-   Name = "Hitbox Expander",
+local GetBang = Tab1:CreateToggle({
+   Name = "GetBang",
    CurrentValue = false,
-   Flag = "HitboxToggle",
+   Flag = "Toggle1",
    Callback = function(Value)
      if Value then
-       HitboxExpander()
-     else
-       unHitboxExpander() 
-     end
+       GetBangg()
+      else
+      unGetBangg()
+    end
    end,
 })
 
 
-
-local Toggle = Tab:CreateToggle({
-   Name = "Day/Night",
-   CurrentValue = false,
-   Flag = "Day/NightToggle",
-   Callback = function(Value)
-     if Value then
-       Night()
-     else
-       Day()
-     end
+local Spectate = Tab1:CreateButton({
+   Name = "Spectate",
+   Callback = function()
+     Espectate()
    end,
 })
 
 
-
-local Slider = Tab2:CreateSlider({
-   Name = "WalkSpeed",
-   Range = {0, 200},
-   Increment = 10,
-   Suffix = "Speed",
-   CurrentValue = 10,
-   Flag = "SpeedSlider",
-   Callback = function(Value)
-     hm.WalkSpeed = Value
+local unSpectate = Tab1:CreateButton({
+   Name = "unSpectate",
+   Callback = function()
+     unSpectate()
    end,
 })
 
 
+local locate = Tab1:CreateButton({
+   Name = "locate",
+   Callback = function()
+     Locate()
+   end,
+})
 
-local Slider = Tab2:CreateSlider({
-   Name = "JumpPower",
-   Range = {0, 200},
-   Increment = 10,
-   Suffix = "JumpPower",
-   CurrentValue = 10,
-   Flag = "JumpSlider",
-   Callback = function(Value)
-     hm.JumpPower = Value
+local unlocate = Tab1:CreateButton({
+   Name = "Disable Locate",
+   Callback = function()
+     UnLocate()
    end,
 })
 
 
-
-local Toggle = Tab:CreateToggle({
-   Name = "Xray",
-   CurrentValue = false,
-   Flag = "XrayToggle",
-   Callback = function(Value)
-     if Value then
-       xray()
-     else
-       unXray()
-     end
+local EspALL = Tab1:CreateButton({
+   Name = "EspALL",
+   Callback = function()
+     locateALL()
    end,
 })
 
-
-
-local Toggle = Tab2:CreateToggle({
-   Name = "TpWalk",
-   CurrentValue = false,
-   Flag = "TpWalkToggle",
-   Callback = function(Value)
-     if Value then
-       TpWalk()
-     else
-       unTpWalk()
-     end
+local UnEspAll = Tab1:CreateButton({
+   Name = "UnEspALL",
+   Callback = function()
+     UnLocateAll()
    end,
 })
+--//functionsTab2
+
+--//Tab2
 
 
 
-local Toggle = Tab2:CreateToggle({
-   Name = "Aimbot",
-   CurrentValue = false,
-   Flag = "AimbotToggle",
-   Callback = function(Value)
-     if Value then
-       aimbot()
-     else
-       unAim()
-     end
-   end,
-})
+--//Tab3
 
+
+
+--//Tab4
+
+
+
+--//Tab5
+
+
+
+--//CharacterAdded
 
 localPlayer.CharacterAdded:Connect(function()
+  while wait(0.01) do
   reconnect()
+  end
 end)
-
-
-
-
-
-local Toggle = Tab2:CreateToggle({
-   Name = "Fly",
-   CurrentValue = false,
-   Flag = "FlyToggle",
-   Callback = function(Value)
-     if Value then
-       Frame.Active = false
-       Frame.Visible = true
-    else
-       isFly = false
-       Frame.Active = false
-       Frame.Visible = false
-       hm.PlatformStand = false
-       bp.Parent = nil
-       ToggleFlyButton.Text = "Fly Off"
-    end
-   end,
-})
-
-local FlySlider = Tab2:CreateSlider({
-   Name = "FlySpeed",
-   Range = {1, 50},
-   Increment = 1,
-   Suffix = "FlySpeed",
-   CurrentValue = 1,
-   Flag = "FlySpeedSlider",
-   Callback = function(Value)
-     FlySpeed = Value
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Zombie Animation",
-   Callback = function()
-   ChangeAnim(10921344533,10921355261,616163682,10921351278,10921350320,10921352344)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Toy Animation",
-   Callback = function()
-   ChangeAnim(10921301576,10921312010,10921306285,10921308158,10921307241,10921309319)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Mage Animation",
-   Callback = function()
-   ChangeAnim(10921144709,10921152678,10921148209,10921149743,10921148939,10921150788)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Style Animation",
-   Callback = function()
-   ChangeAnim(10921272275,10921283326,10921276116,10921279832,10921278648,10921281000)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "exuberant Animation",
-   Callback = function()
-   ChangeAnim(10921054344,10980888364,10921057244,10921062673,10921061530,10921063569)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Levitation Animation",
-   Callback = function()
-   ChangeAnim(10921132962,10921140719,10921135644,10921137402,10921136539,10921138209)
-   end,
-})
-
-local Toggle = Tab:CreateToggle({
-   Name = "FullBright",
-   CurrentValue = false,
-   Flag = "FBToggle",
-   Callback = function(Value)
-     if Value then
-       FullB()
-     else
-       UnFullB()
-     end
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "CatWalk Anim",
-   Callback = function()
-   ChangeAnim(133806214992291,109168724482748,81024476153754,116936326516985,92294537340807,134591743181628)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Robot Anim",
-   Callback = function()
-   ChangeAnim(10921248039,10921255446,10921250460,10921252123,10921251156,10921253142)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Adidas Sports Anim",
-   Callback = function()
-   ChangeAnim(18537376492,18537392113,18537384940,18537380791,18537367238,18537389531)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Eldders Anim",
-   Callback = function()
-   ChangeAnim(10921101664,10921111375,10921104374,10921107367,10921105765,10921108971)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Old School Anim",
-   Callback = function()
-   ChangeAnim(10921230744,10921244891,10921240218,10921242013,10921241244,10921243048)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Comics Anim",
-   Callback = function()
-   ChangeAnim(10921071918,10921082452,10921076136,10921078135,10921077030,10921079380)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Ninja Anim",
-   Callback = function()
-   ChangeAnim(10921155160,10921162768,10921157929,10921160088,10921159222,10921161002)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "SuperHeroe Anim",
-   Callback = function()
-   ChangeAnim(10921288909,10921298616,10921291831,10921294559,10921293373,10921295495)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Vampire Anim",
-   Callback = function()
-   ChangeAnim(10921315373,10921326949,10921320299,10921322186,10921321317,10921324408)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Wolfman Anim",
-   Callback = function()
-   ChangeAnim(10921330408,10921342074,10921336997,1083218792,10921337907,10921340419)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Knight Animation",
-   Callback = function()
-   ChangeAnim(10921117521,10921127095,10921121197,10921123517,10921122579,10921125160)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "NFL Anim",
-   Callback = function()
-   ChangeAnim(92080889861410,110358958299415,117333533048078,119846112151352,129773241321032,132697394189921)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "No Boundaries Anim",
-   Callback = function()
-   ChangeAnim(18747067405,18747074203,18747070484,18747069148,18747062535,18747073181)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "astronaunt Anim",
-   Callback = function()
-   ChangeAnim(10921034824,10921046031,10921039308,10921042494,10921040576,10921044000)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Wicked Popular Anim",
-   Callback = function()
-   ChangeAnim(118832222982049,92072849924640,72301599441680,104325245285198,121152442762481,99384245425157)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Bold Anim",
-   Callback = function()
-   ChangeAnim(16738333868,16738340646,16738337225,16738336650,16738333171,16738339158)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "Pirate Anim",
-   Callback = function()
-   ChangeAnim(750781874,750785693,750783738,750782230,750780242,750784579)
-   end,
-})
-
-local Button = Tab3:CreateButton({
-   Name = "RTHRO Anim",
-   Callback = function()
-   ChangeAnim(10921259953,10921269718,10921261968,10921263860,10921262864,10921264784)
-   end,
-})
-
-local Button = Tab4:CreateButton({
-   Name = "BrookHaven IN PROGRESS",
-   Callback = function()
-     print("Spanish: Espera la actualizacion de Brookhaven : English: Wait For The Update Of BrookHaven")
-   end,
-})
