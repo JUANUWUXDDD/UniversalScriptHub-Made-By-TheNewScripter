@@ -171,27 +171,39 @@ local function Bang()
           PlayAndStopAnim(10714168145,1,1,0.8,0)
           while isBang do
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,1)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,2)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,3)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,4)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,5)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,6)
-            wait(0.02)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,7)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,8)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,9)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,8)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,7)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,6)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,5)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,4)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,3)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,2)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,1)
-            wait(0.02)
+            wait(0.005)
           end
         end)
       end
@@ -225,27 +237,39 @@ local function GetBangg()
         PlayAndStopAnim(10714360343,1,1,0.5,0)
           while GetBangState do
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-1)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-2)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-3)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-4)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-5)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-6)
-            wait(0.02)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-7)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-8)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-9)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-8)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-7)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-6)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-5)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-4)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-3)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-2)
-            wait(0.02)
+            wait(0.005)
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-1)
-            wait(0.02)
+            wait(0.005)
           end
         end)
     end
@@ -266,6 +290,83 @@ local function unGetBangg()
   end
 end
 
+local ChuparState = false
+
+local function Chupar()
+  local Target = FindPlayer(TargetName)
+  if Target then
+    local TargetChar = Target.Character
+    if TargetChar then
+      local TargetHRP = TargetChar:FindFirstChild("HumanoidRootPart")
+      ChuparState = true
+      if TargetHRP and h then
+        task.spawn(function()
+          PlayAndStopAnim(13694096724,1,1,1.7,0)
+          while ChuparState do
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-2)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-3)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-4)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-5)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-6)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-7)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-8)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-9)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-8)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-7)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-6)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-5)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-4)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-3)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+            wait(0.005)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-2)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+            wait(0.005)
+          end
+        end)
+      end
+    end
+  end
+end
+
+local function UnChupar()
+  if ChuparState == true then
+    ChuparState = false
+  end
+  
+for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
+    if animTrack.Animation.AnimationId == "rbxassetid://13694096724" then
+      animTrack:Stop()
+    end
+end
+end
+
 
 local function Espectate()
   local Target = FindPlayer(TargetName)
@@ -281,7 +382,7 @@ local function Espectate()
 end
 
 local function unSpectate()
-  camera.CameraSubject = Head
+  camera.CameraSubject = hm
 end
 
 
@@ -389,6 +490,20 @@ local GetBang = Tab1:CreateToggle({
        GetBangg()
       else
       unGetBangg()
+    end
+   end,
+})
+
+
+local Chupar = Tab1:CreateToggle({
+   Name = "Chupar",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+     if Value then
+       Chupar()
+      else
+      UnChupar()
     end
    end,
 })
@@ -737,4 +852,4 @@ end)
   end
 end)
 
-end --[Provicional Para que solo yo pueda usarlo]
+end --[Provicional Para que solo yo pueda usarlo] 
