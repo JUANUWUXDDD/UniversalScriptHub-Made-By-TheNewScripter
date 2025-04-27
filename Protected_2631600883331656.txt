@@ -130,6 +130,18 @@ local function FindPlayer(name)
     return nil
 end
 
+local function PlayAndStopAnim(id,Speed,TimePosition,Wait,Speed2)
+local anim = Instance.new("Animation")
+anim.AnimationId = "rbxassetid://".. id
+
+local animTrack = hm:LoadAnimation(anim)
+animTrack:AdjustSpeed(Speed)
+animTrack.TimePosition = TimePosition
+animTrack:Play()
+wait(Wait)
+animTrack:AdjustSpeed(Speed2)
+end
+
 --//functionsTab1
 
 local function TpToPlayerWithName()
@@ -156,6 +168,7 @@ local function Bang()
       local TargetHRP = TargetChar:FindFirstChild("HumanoidRootPart")
       if TargetHRP and h then
         task.spawn(function()
+          PlayAndStopAnim(10714168145,1,1,0.8,0)
           while isBang do
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,1)
             wait(0.02)
@@ -190,6 +203,12 @@ local function unBang()
   if isBang then
     isBang = false
   end
+  
+  for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
+    if animTrack.Animation.AnimationId == "rbxassetid://10714168145" then
+      animTrack:Stop()
+    end
+  end
 end
 
 local GetBangState = false
@@ -203,6 +222,7 @@ local function GetBangg()
       GetBangState = true
     if TargetHRP and h then
       task.spawn(function()
+        PlayAndStopAnim(10714360343,1,1,0.5,0)
           while GetBangState do
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-1)
             wait(0.02)
@@ -237,6 +257,12 @@ end
 local function unGetBangg()
   if GetBangState then
     GetBangState = false
+  end
+  
+  for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
+    if animTrack.Animation.AnimationId == "rbxassetid://10714360343" then
+      animTrack:Stop()
+    end
   end
 end
 
@@ -450,6 +476,30 @@ local function UnableDash()
   end
 end
 
+
+local TpWalkState = false
+local Speed = 1
+
+local function EnableTpWalk()
+  TpWalkState = true
+  task.spawn(function()
+    while TpWalkState do
+      local Velocity = h.Velocity.Magnitude
+      if Velocity > 1 then
+        h.CFrame = h.CFrame * CFrame.new(0,0,-Speed)
+      else
+        print("esperando que se mueva")
+      end
+      task.wait(0.01)
+    end
+  end)
+end
+
+local function UnableTpWalk()
+  if TpWalkState == true then
+    TpWalkState = false
+  end
+end
 --//Tab2_LocalPlayer
 
 local Section1Tab2 = Tab2:CreateSection("LocalPlayer")
@@ -489,6 +539,33 @@ local Dash = Tab2:CreateToggle({
       else
        UnableDash()
     end
+   end,
+})
+
+
+local TpWalk = Tab2:CreateToggle({
+   Name = "TpWalk",
+   CurrentValue = false,
+   Flag = "TpWalkToggle",
+   Callback = function(Value)
+     if Value then
+       EnableTpWalk()
+      else
+       UnableTpWalk()
+    end
+   end,
+})
+
+
+local TpWalkSpeed = Tab2:CreateSlider({
+   Name = "TpWalkSpeed",
+   Range = {1, 10},
+   Increment = 1,
+   Suffix = "TpWalkSpeed",
+   CurrentValue = 1,
+   Flag = "Slider1", 
+   Callback = function(Value)
+     Speed = Value
    end,
 })
 
