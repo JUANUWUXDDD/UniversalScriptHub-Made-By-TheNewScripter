@@ -56,6 +56,7 @@ local hm = char:WaitForChild("Humanoid")
 local h = char:WaitForChild("HumanoidRootPart")
 local Head = char:WaitForChild("Head")
 local camera = game.Workspace.CurrentCamera
+local Uis = game:GetService("UserInputService")
 
 local function reconnect()
   
@@ -417,9 +418,37 @@ local UnEspAll = Tab1:CreateButton({
 
 --//Global Functions Tab2
 
+local function Move(Direccion)
+  h.CFrame = h.CFrame * Direccion
+end
 
 --//functionsTab2
 
+local DashState = false
+local DashConnection = nil
+
+local function EnableDash()
+  DashState = true
+  DashConnection = Uis.InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.F then
+      if DashState == true then
+        for i = 1,7,1 do
+        Move(CFrame.new(0,0,-3))
+        wait(0.005)
+        end
+      end
+    end
+  end)
+end
+
+local function UnableDash()
+  if DashState == true then
+    DashState = false
+    if DashConnection then
+    DashConnection:Disconnect()
+    end
+  end
+end
 
 --//Tab2_LocalPlayer
 
@@ -446,6 +475,20 @@ local JumpPower = Tab2:CreateSlider({
    Flag = "Slider1", 
    Callback = function(Value)
      hm.JumpPower = Value
+   end,
+})
+
+
+local Dash = Tab2:CreateToggle({
+   Name = "Dash (F)",
+   CurrentValue = false,
+   Flag = "DashToggle",
+   Callback = function(Value)
+     if Value then
+       EnableDash()
+      else
+       UnableDash()
+    end
    end,
 })
 
