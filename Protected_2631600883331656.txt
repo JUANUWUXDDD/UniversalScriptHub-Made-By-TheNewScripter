@@ -528,6 +528,45 @@ local function UnableBackHug()
   end
 end
 
+local HeadSitState = false
+
+
+local function EnableHeadSit()
+  local Target = FindPlayer(TargetName)
+  if Target then
+    local TargetChar = Target.Character
+    if TargetChar then
+      local TargetHead = TargetChar:FindFirstChild("Head")
+      HeadSitState = true
+      if TargetHead and h then
+        task.spawn(function()
+          PlayAndStopAnim(12507085924,2.4,0)
+          workspace.Gravity = 0
+          while HeadSitState do
+            h.Anchored = false
+            h.CFrame = TargetHead.CFrame * CFrame.new(0,3,0)
+            h.Anchored = true
+            h.Anchored = false
+            wait(0.001)
+          end
+        end)
+      end
+    end
+  end
+end
+
+local function UnableHeadSit()
+  if HeadSitState == true then
+    HeadSitState = false
+    workspace.Gravity = 196.2
+    
+    for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
+    if animTrack.Animation.AnimationId == "rbxassetid://12507085924" then
+      animTrack:Stop()
+    end
+   end
+  end
+end
 
 
 local function Espectate()
@@ -708,6 +747,20 @@ local BackHug = Tab1:CreateToggle({
        EnableBackHug()
       else
       UnableBackHug()
+    end
+   end,
+})
+
+
+local HeadSit = Tab1:CreateToggle({
+   Name = "HeadSit",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+     if Value then
+       EnableHeadSit()
+      else
+      UnableHeadSit()
     end
    end,
 })
