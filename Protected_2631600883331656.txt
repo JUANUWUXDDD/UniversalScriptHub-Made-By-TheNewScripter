@@ -573,10 +573,16 @@ local function EnableDash()
   DashConnection = Uis.InputBegan:Connect(function(input)
     if input.KeyCode == Enum.KeyCode.F then
       if DashState == true then
+        PlayAndStopAnim(15698404340,1,1,0.3,0)
         for i = 1,7,1 do
-        Move(CFrame.new(0,0,-3))
-        wait(0.005)
+        Move(CFrame.new(0,0,-5))
+        wait(0.002)
         end
+    for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
+    if animTrack.Animation.AnimationId == "rbxassetid://15698404340" then
+      animTrack:Stop()
+    end
+  end
       end
     end
   end)
@@ -621,8 +627,8 @@ local Section1Tab2 = Tab2:CreateSection("LocalPlayer")
 
 local WalkSpeed = Tab2:CreateSlider({
    Name = "WalkSpeed",
-   Range = {16, 1000},
-   Increment = 10,
+   Range = {16, 500},
+   Increment = 16,
    Suffix = "WalkSpeed",
    CurrentValue = 16,
    Flag = "Slider1", 
@@ -633,7 +639,7 @@ local WalkSpeed = Tab2:CreateSlider({
 
 local JumpPower = Tab2:CreateSlider({
    Name = "JumpPower",
-   Range = {50, 1000},
+   Range = {50, 500},
    Increment = 10,
    Suffix = "JumpPower",
    CurrentValue = 50,
@@ -674,7 +680,7 @@ local TpWalk = Tab2:CreateToggle({
 
 local TpWalkSpeed = Tab2:CreateSlider({
    Name = "TpWalkSpeed",
-   Range = {1, 10},
+   Range = {1, 5},
    Increment = 1,
    Suffix = "TpWalkSpeed",
    CurrentValue = 1,
@@ -784,7 +790,7 @@ local function UnableHitbox()
 end
 --//Tab3_Combat
 
-local Section1Tab3 = Tab1:CreateSection("Combat_Functions")
+local Section1Tab3 = Tab3:CreateSection("Combat_Functions")
 
 local Aimbot = Tab3:CreateToggle({
    Name = "Aimbot",
