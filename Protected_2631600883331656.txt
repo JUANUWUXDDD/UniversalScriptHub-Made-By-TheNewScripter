@@ -1,3 +1,4 @@
+if game.Players.LocalPlayer.Name == "INFINITYH4CK" then
 local customTheme = {
     TextColor = Color3.fromRGB(120, 120, 200),  -- Azul lavanda
 
@@ -62,10 +63,12 @@ local function reconnect()
  iluminacion = game:GetService("Lighting")
  Players = game.Players
  localPlayer = Players.LocalPlayer
+ pGui = localPlayer.PlayerGui
  char = localPlayer.Character
  Animate = char:WaitForChild("Animate")
  hm = char:WaitForChild("Humanoid")
  h = char:WaitForChild("HumanoidRootPart")
+ Head = char:WaitForChild("Head")
  camera = game.Workspace.CurrentCamera
   
 end
@@ -114,7 +117,7 @@ local Tab5 = Window:CreateTab("DestroyGui", 4483362458)
 local TargetName = " "
 
 
---//Global Functions
+--//Global Functions Tab1
 
 local function FindPlayer(name)
     name = name:lower()
@@ -310,7 +313,11 @@ local function UnLocateAll()
     end
   end
 end
---//Tab1
+--//Tab1_Players
+
+
+local Section1Tab1 = Tab1:CreateSection("Insert Name")
+
 
 local Input = Tab1:CreateInput({
    Name = "TargetName",
@@ -320,6 +327,10 @@ local Input = Tab1:CreateInput({
       TargetName = text
    end
 })
+
+
+local Section2Tab1 = Tab1:CreateSection("Functions")
+
 
 local Teleport = Tab1:CreateButton({
    Name = "Teleport",
@@ -387,6 +398,9 @@ local unlocate = Tab1:CreateButton({
 })
 
 
+local Section3Tab1 = Tab1:CreateSection("AllPlayers_Functions")
+
+
 local EspALL = Tab1:CreateButton({
    Name = "EspALL",
    Callback = function()
@@ -400,15 +414,181 @@ local UnEspAll = Tab1:CreateButton({
      UnLocateAll()
    end,
 })
+
+--//Global Functions Tab2
+
+
 --//functionsTab2
 
---//Tab2
+
+--//Tab2_LocalPlayer
+
+local Section1Tab2 = Tab2:CreateSection("LocalPlayer")
+
+local WalkSpeed = Tab2:CreateSlider({
+   Name = "WalkSpeed",
+   Range = {16, 1000},
+   Increment = 10,
+   Suffix = "WalkSpeed",
+   CurrentValue = 16,
+   Flag = "Slider1", 
+   Callback = function(Value)
+     hm.WalkSpeed = Value
+   end,
+})
+
+local JumpPower = Tab2:CreateSlider({
+   Name = "JumpPower",
+   Range = {50, 1000},
+   Increment = 10,
+   Suffix = "JumpPower",
+   CurrentValue = 50,
+   Flag = "Slider1", 
+   Callback = function(Value)
+     hm.JumpPower = Value
+   end,
+})
+
+--//Global Functions Tab3
+
+local nearestPlayer = nil
+
+local function GetNearestPlayer()
+  local Distancia_MasCorta = math.huge
+  for _, p in ipairs(Players:GetPlayers()) do
+    if p == localPlayer then
+      print("Excluido el localPlayer")
+    else
+    local pChar = p.Character
+    if pChar then
+      local pHRP = pChar:FindFirstChild("HumanoidRootPart")
+      if pHRP then
+        local distancia = (h.Position - pHRP.Position).Magnitude
+        if distancia < Distancia_MasCorta then
+          Distancia_MasCorta = distancia
+          nearestPlayer = p.Name
+          print("el jugador mas cercano es".. p.Name)
+        end
+        end
+      end
+    end
+  end
+end
+
+--//Tab3_Functions
+
+local aimbotState = false
+
+local function EnableAimbot()
+  aimbotState = true
+  task.spawn(function()
+    while aimbotState do
+      GetNearestPlayer()
+      local Target = Players:FindFirstChild(nearestPlayer)
+      if Target and Target.Character then
+        local TargetHRP = Target.Character:FindFirstChild("HumanoidRootPart")
+        if TargetHRP then
+          local TargetPosition = TargetHRP.Position
+          local LookAt = Vector3.new(TargetPosition.X , h.Position.Y , TargetPosition.Z)
+          h.CFrame = CFrame.lookAt(h.Position, LookAt)
+          camera.CFrame = CFrame.lookAt(camera.CFrame.Position, TargetPosition)
+          task.wait(0.01)
+        end
+      end
+    end
+  end)
+end
+
+local function UnableAimbot()
+  if aimbotState then
+    aimbotState = false
+  end
+end
+
+local HitboxStatus = false
+local Size = 3
+
+local function EnableHitbox()
+  HitboxStatus = true
+  for _, p in ipairs(Players:GetPlayers()) do
+    if p == localPlayer then
+      print("LocalPlayer excluido")
+    else
+    local pChar = p.Character
+    if pChar then
+      local pHRP = pChar:FindFirstChild("HumanoidRootPart")
+      if pHRP then
+        pHRP.Size = Vector3.new(Size,Size,Size)
+        pHRP.Material = Enum.Material.Neon
+        pHRP.Transparency = 0.8
+        pHRP.Color = Color3.fromRGB(255,0,0)
+        pHRP.Shape = Enum.PartType.Ball
+      end
+      end
+    end
+  end
+end
+
+local function UnableHitbox()
+  HitboxStatus = false
+  for _, p in ipairs(Players:GetPlayers()) do
+    if p == localPlayer then
+      print("localPlayer excluido")
+    else
+    local pChar = p.Character
+    if pChar then
+      local pHRP = pChar:FindFirstChild("HumanoidRootPart")
+      if pHRP then
+        pHRP.Size = Vector3.new(2,2,2)
+        pHRP.Transparency = 1
+        pHRP.Shape = Enum.PartType.Block
+      end
+      end
+    end
+  end
+end
+--//Tab3_Combat
+
+local Section1Tab3 = Tab1:CreateSection("Combat_Functions")
+
+local Aimbot = Tab3:CreateToggle({
+   Name = "Aimbot",
+   CurrentValue = false,
+   Flag = "AimbotToggle",
+   Callback = function(Value)
+     if Value then
+       EnableAimbot()
+      else
+      UnableAimbot()
+    end
+   end,
+})
+
+local Hitbox = Tab3:CreateToggle({
+   Name = "HitboxExpander",
+   CurrentValue = false,
+   Flag = "HitboxToggle",
+   Callback = function(Value)
+     if Value then
+       EnableHitbox()
+      else
+      UnableHitbox()
+    end
+   end,
+})
 
 
-
---//Tab3
-
-
+local HitboxSlider = Tab3:CreateSlider({
+   Name = "HitboxSize",
+   Range = {3, 50},
+   Increment = 3,
+   Suffix = "Size",
+   CurrentValue = 3,
+   Flag = "Slider1", 
+   Callback = function(Value)
+     Size = Value
+   end,
+})
 
 --//Tab4
 
@@ -421,7 +601,20 @@ local UnEspAll = Tab1:CreateButton({
 --//CharacterAdded
 
 localPlayer.CharacterAdded:Connect(function()
+  
+task.spawn(function()
   while wait(0.01) do
   reconnect()
   end
 end)
+  
+  if aimbotState == true then
+    EnableAimbot()
+  end
+  
+  if HitboxStatus == true then
+    EnableHitbox()
+  end
+end)
+
+end --[Provicional Para que solo yo pueda usarlo]
