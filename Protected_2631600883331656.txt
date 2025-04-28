@@ -395,7 +395,7 @@ local function EnableGetSuck()
       GetSuckState = true
       if TargetHead and h then
         task.spawn(function()
-          PlayAndStopAnim(10714349037,1,0)
+          PlayAndStopAnim(10714168145,1,0)
           workspace.Gravity = 0
           while GetSuckState do
             h.Anchored = false
@@ -466,7 +466,7 @@ local function UnableGetSuck()
     h.Anchored = false
     
     for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
-    if animTrack.Animation.AnimationId == "rbxassetid://10714349037" then
+    if animTrack.Animation.AnimationId == "rbxassetid://10714168145" then
       animTrack:Stop()
     end
    end
