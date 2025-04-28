@@ -401,52 +401,84 @@ local function EnableGetSuck()
             h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-1.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            h.Anchored = true
             wait(0.001)
+            h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-2.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            h.Anchored = true
             wait(0.001)
+            h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-3.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            h.Anchored = true
             wait(0.001)
+            h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-4.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            h.Anchored = true
             wait(0.001)
+            h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-5.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            h.Anchored = true
             wait(0.001)
+            h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-6.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            h.Anchored = true
             wait(0.001)
+            h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-7.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            h.Anchored = true
             wait(0.001)
+            h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-8.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            h.Anchored = true
             wait(0.001)
+            h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-9.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            h.Anchored = true
             wait(0.001)
+            h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-8.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            h.Anchored = true
             wait(0.001)
+            h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-7.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            h.Anchored = true
             wait(0.001)
+            h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-6.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            h.Anchored = true
             wait(0.001)
+            h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-5.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            h.Anchored = true
             wait(0.001)
+            h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-4.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            h.Anchored = true
             wait(0.001)
+            h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-3.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            h.Anchored = true
             wait(0.001)
+            h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-2.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            h.Anchored = true
             wait(0.001)
+            h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-1.5)
             h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
             h.Anchored = true
@@ -525,11 +557,13 @@ local function EnableHug()
       if TargetHRP and h then
         task.spawn(function()
           PlayAndStopAnim(15392759696,1,0)
+          workspace.Gravity = 0
           while HugState do
             h.Anchored = false
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-1)
             h.CFrame = CFrame.lookAt(h.Position,TargetHRP.Position)
             h.Anchored = true
+            wait(0.001)
             h.Anchored = false
             wait(0.001)
           end
@@ -566,11 +600,13 @@ local function EnableBackHug()
       if TargetHRP and h then
         task.spawn(function()
           PlayAndStopAnim(15392759696,1,0)
+          workspace.Gravity = 0
           while HugState do
             h.Anchored = false
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,1)
             h.CFrame = CFrame.lookAt(h.Position,TargetHRP.Position)
             h.Anchored = true
+            wait(0.001)
             h.Anchored = false
             wait(0.001)
           end
