@@ -1,4 +1,3 @@
-if game.Players.LocalPlayer.Name == "INFINITYH4CK" then
 local customTheme = {
     TextColor = Color3.fromRGB(220, 220, 220),
 
@@ -94,15 +93,15 @@ local Window = Rayfield:CreateWindow({
       Invite = "noinvitelink",
       RememberJoins = true
    },
-   KeySystem = false,
+   KeySystem = true,
    KeySettings = {
-      Title = "Untitled",
+      Title = "NullModz KeySystem",
       Subtitle = "Key System",
       Note = "No method of obtaining the key is provided",
       FileName = "Key",
       SaveKey = true,
       GrabKeyFromSite = false,
-      Key = {"Hello"}
+      Key = {"Owner"}
    }
 })
 
@@ -615,12 +614,15 @@ local function unSpectate()
   camera.CameraSubject = hm
 end
 
+local locateState = false
+
 
 local function Locate()
   local Target = FindPlayer(TargetName)
   if Target then
     local TargetChar = Target.Character
     if TargetChar then
+      locateState = true
       local luz = TargetChar:FindFirstChild("Highlight")
       if not luz then
       local ESP = Instance.new("Highlight")
@@ -637,6 +639,7 @@ local function UnLocate()
   if Target then
     local TargetChar = Target.Character
     if TargetChar then
+      locateState = false
       local ESP = TargetChar:FindFirstChild("Highlight")
       if ESP then
         ESP:Destroy()
@@ -645,10 +648,13 @@ local function UnLocate()
   end
 end
 
+local LocateAllState = false
+
 local function locateALL()
   for _, p in ipairs(Players:GetPlayers()) do
     local pChar = p.Character
     if pChar then
+      LocateAllState = true
       local luz = pChar:FindFirstChild("Highlight")
       if not luz then
         local ESP = Instance.new("Highlight")
@@ -664,6 +670,7 @@ local function UnLocateAll()
   for _, p in ipairs(Players:GetPlayers()) do
     local pChar = p.Character
     if pChar then
+      LocateAllState = false
       local luz = pChar:FindFirstChild("Highlight")
       if luz then
         luz:Destroy()
@@ -795,53 +802,49 @@ local HeadSit = Tab1:CreateToggle({
 })
 
 
-local Spectate = Tab1:CreateButton({
+local Spectate = Tab1:CreateToggle({
    Name = "Spectate",
-   Callback = function()
-     Espectate()
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+     if Value then
+       Espectate()
+      else
+      unSpectate()
+    end
    end,
 })
 
 
-local unSpectate = Tab1:CreateButton({
-   Name = "unSpectate",
-   Callback = function()
-     unSpectate()
-   end,
-})
-
-
-local locate = Tab1:CreateButton({
-   Name = "locate",
-   Callback = function()
-     Locate()
-   end,
-})
-
-local unlocate = Tab1:CreateButton({
-   Name = "Disable Locate",
-   Callback = function()
-     UnLocate()
+local Locate = Tab1:CreateToggle({
+   Name = "Locate",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+     if Value then
+       Locate()
+      else
+      UnLocate()
+    end
    end,
 })
 
 
 local Section3Tab1 = Tab1:CreateSection("AllPlayers_Functions")
 
-
-local EspALL = Tab1:CreateButton({
-   Name = "EspALL",
-   Callback = function()
-     locateALL()
+local EspAll = Tab1:CreateToggle({
+   Name = "EspAll",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+     if Value then
+       locateALL()
+      else
+      UnLocateAll()
+    end
    end,
 })
 
-local UnEspAll = Tab1:CreateButton({
-   Name = "UnEspALL",
-   Callback = function()
-     UnLocateAll()
-   end,
-})
 
 --//Global Functions Tab2
 
@@ -1134,14 +1137,46 @@ task.spawn(function()
   reconnect()
   end
 end)
+
+wait(0.5)
   
   if aimbotState == true then
     EnableAimbot()
+    print("aimbot Reconnectado")
+  else
+    print("se intento reactivar el aimbot pero la condicion no se cumplio")
   end
   
   if HitboxStatus == true then
     EnableHitbox()
+    print("hitbox Reconnectada")
+  else
+    print("se intento reactivar el hitbox pero la condicion no se cumplio")
   end
+
+if locateState == true then
+  Locate()
+  print("Locate Reconnectado")
+else
+  print("se intento reactivar el locate pero la condicion no se cumplio")
+end
+
+if LocateAllState == true then
+  locateALL()
+  print("EspAll Reconnectado")
+else 
+  print("se intento reactivar denuevo el LocateAll pero la Condicion no se cumplio")
+end
 end)
 
-end --[Provicional Para que solo yo pueda usarlo] 
+Players.PlayerAdded:Connect(function(plr)
+  plr.CharacterAdded:Connect(function()
+    if LocateAllState == true then
+      LocateAll()
+    end
+    
+    if HitboxStatus == true then
+      EnableHitbox()
+    end
+  end)
+end) --[Provicional Para que solo yo pueda usarlo] 
