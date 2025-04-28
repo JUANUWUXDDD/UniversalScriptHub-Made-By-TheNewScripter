@@ -473,6 +473,45 @@ local function UnableGetSuck()
   end
 end
 
+local HeadDanceState = false
+
+
+local function EnableHeadDance()
+  local Target = FindPlayer(TargetName)
+  if Target then
+    local TargetChar = Target.Character
+    if TargetChar then
+      local TargetHead = TargetChar:FindFirstChild("Head")
+      HeadDanceState = true
+      if TargetHead and h then
+        task.spawn(function()
+          PlayAndStopAnim(15122972413,1,1)
+          workspace.Gravity = 0
+          while HeadDanceState do
+            h.Anchored = false
+            h.CFrame = TargetHead.CFrame * CFrame.new(0,3,0)
+            h.Anchored = true
+            h.Anchored = false
+            wait(0.001)
+          end
+        end)
+      end
+    end
+  end
+end
+
+local function UnableHeadDance()
+  if HeadDanceState == true then
+    HeadDanceState = false
+    workspace.Gravity = 196.2
+    for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
+    if animTrack.Animation.AnimationId == "rbxassetid://15122972413" then
+      animTrack:Stop()
+    end
+   end
+  end
+end
+
 
 local HugState = false
 
@@ -727,6 +766,20 @@ local GetBang = Tab1:CreateToggle({
        GetBangg()
       else
       unGetBangg()
+    end
+   end,
+})
+
+
+local HeadDance = Tab1:CreateToggle({
+   Name = "HeadDance",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+     if Value then
+       EnableHeadDance()
+      else
+      UnableHeadDance()
     end
    end,
 })
