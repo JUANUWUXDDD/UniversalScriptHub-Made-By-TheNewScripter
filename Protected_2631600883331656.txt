@@ -55,6 +55,7 @@ local hm = char:WaitForChild("Humanoid")
 local h = char:WaitForChild("HumanoidRootPart")
 local Head = char:WaitForChild("Head")
 local camera = game.Workspace.CurrentCamera
+local Run = game:GetService("RunService")
 local Uis = game:GetService("UserInputService")
 
 local function reconnect()
@@ -70,6 +71,9 @@ local function reconnect()
  h = char:WaitForChild("HumanoidRootPart")
  Head = char:WaitForChild("Head")
  camera = game.Workspace.CurrentCamera
+ Run = game:GetService("RunService")
+ Uis = game:GetService("UserInputService")
+ 
   
 end
 
@@ -382,127 +386,6 @@ for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
     end
 end
 end
-end
-
-local GetSuckState = false
-
-local function EnableGetSuck()
-  local Target = FindPlayer(TargetName)
-  if Target then
-    local TargetChar = Target.Character
-    if TargetChar then
-      local TargetHead = TargetChar:FindFirstChild("Head")
-      GetSuckState = true
-      if TargetHead and h then
-        task.spawn(function()
-          PlayAndStopAnim(10714168145,1,0)
-          workspace.Gravity = 0
-          while GetSuckState do
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-1.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            wait(0.001)
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-2.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            wait(0.001)
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-3.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            wait(0.001)
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-4.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            wait(0.001)
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-5.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            wait(0.001)
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-6.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            wait(0.001)
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-7.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            wait(0.001)
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-8.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            wait(0.001)
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-9.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            wait(0.001)
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-8.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            wait(0.001)
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-7.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            wait(0.001)
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-6.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            wait(0.001)
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-5.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            wait(0.001)
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-4.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            wait(0.001)
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-3.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            wait(0.001)
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-2.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            wait(0.001)
-            h.Anchored = false
-            h.CFrame = TargetHead.CFrame * CFrame.new(0,1,-1.5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-            h.Anchored = true
-            h.Anchored = false
-            wait(0.001)
-          end
-        end)
-      end
-    end
-  end
-end
-
-local function UnableGetSuck()
-  if GetSuckState == true then
-    GetSuckState = false
-    workspace.Gravity = 196.2
-    h.Anchored = false
-    
-    for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
-    if animTrack.Animation.AnimationId == "rbxassetid://10714168145" then
-      animTrack:Stop()
-    end
-   end
-  end
 end
 
 local HeadDanceState = false
@@ -830,20 +713,6 @@ local Suck = Tab1:CreateToggle({
        Chupar()
       else
       UnChupar()
-    end
-   end,
-})
-
-
-local GetSuck = Tab1:CreateToggle({
-   Name = "GetSuck",
-   CurrentValue = false,
-   Flag = "Toggle1",
-   Callback = function(Value)
-     if Value then
-       EnableGetSuck()
-      else
-      UnableGetSuck()
     end
    end,
 })
