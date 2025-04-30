@@ -105,7 +105,7 @@ local Window = Rayfield:CreateWindow({
       FileName = "Key",
       SaveKey = false,
       GrabKeyFromSite = false,
-      Key = {"unodostrescuatro"}
+      Key = {"Key"}
    }
 })
 
