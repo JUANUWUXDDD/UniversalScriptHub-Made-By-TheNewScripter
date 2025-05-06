@@ -159,6 +159,7 @@ local function TpToPlayerWithName()
 end
 
 local isBang = false
+local BangSpeed = 1
 
 local function Bang()
   isBang = true
@@ -172,43 +173,14 @@ local function Bang()
           PlayAndStopAnim(10713962506,1.4,0)
           workspace.Gravity = 0
           while isBang do
-            h.Anchored = false
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,1)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,2)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,3)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,4)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,5)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,6)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,7)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,8)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,9)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,8)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,7)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,6)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,5)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,4)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,3)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,2)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,1)
-            h.Anchored = true
-            h.Anchored = false
-            wait(0.005)
+            for i = 1,6,BangSpeed do
+              h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,i)
+              wait(0.001)
+            end
+            for i = 6,1,-BangSpeed do
+              h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,i)
+              wait(0.001)
+            end
           end
         end)
       end
@@ -232,6 +204,7 @@ end
 end
 
 local GetBangState = false
+local GetBangSpeed = 1
 
 local function GetBangg()
   local Target = FindPlayer(TargetName)
@@ -245,43 +218,14 @@ local function GetBangg()
         PlayAndStopAnim(10714395175,0.2,0)
         workspace.Gravity = 0
           while GetBangState do
-            h.Anchored = false
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-1)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-2)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-3)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-4)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-5)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-6)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-7)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-8)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-9)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-8)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-7)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-6)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-5)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-4)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-3)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-2)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-1)
-            h.Anchored = true
-            h.Anchored = false
-            wait(0.005)
+            for i = 1,6,GetBangSpeed do
+              h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-i)
+              wait(0.001)
+            end
+            for i = 6,1,-GetBangSpeed do
+              h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-i)
+              wait(0.001)
+            end
           end
         end)
     end
@@ -305,6 +249,7 @@ end
 end
 
 local ChuparState = false
+local SuckSpeed = 1
 
 local function Chupar()
   local Target = FindPlayer(TargetName)
@@ -318,54 +263,16 @@ local function Chupar()
           PlayAndStopAnim(13694096724,2,0)
           workspace.Gravity = 0
           while ChuparState do
-            h.Anchored = false
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-2)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-3)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-4)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-6)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-7)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-8)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-9)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-8)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-7)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-6)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-5)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-4)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-3)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-            wait(0.005)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-2,-2)
-            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-            h.Anchored = true
-            h.Anchored = false
-            wait(0.005)
+            for i = 1,6,SuckSpeed do
+              h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-i)
+              h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+              wait(0.001)
+            end
+            for i = 6,1,-SuckSpeed do
+              h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-i)
+              h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+              wait(0.001)
+            end
           end
         end)
       end
@@ -554,6 +461,56 @@ local function UnableHeadSit()
   end
 end
 
+local HeadSuckState = false
+local HeadSuckSpeed = 0.1
+
+
+local function EnableHeadSuck()
+  local Target = FindPlayer(TargetName)
+  if Target then
+    local TargetChar = Target.Character
+    if TargetChar then
+      local TargetHead = TargetChar:FindFirstChild("Head")
+      if TargetHead and h then
+        task.spawn(function()
+          HeadSuckState = true
+          PlayAndStopAnim(12992262118,1,0)
+          workspace.Gravity = 0
+          while HeadSuckState do
+            for i = 1,6,HeadSuckSpeed do
+              h.CFrame = TargetHead.CFrame * CFrame.new(0,-0.5,-i)
+                h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+              wait(0.0001)
+            end
+            for i = 6,1,-HeadSuckSpeed do
+              h.CFrame = TargetHead.CFrame * CFrame.new(0,-0.5,-i)
+              h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+              wait(0.0001)
+            end
+          end
+        end)
+      end
+    end
+  end
+end
+
+
+local function UnableHeadSuck()
+  if HeadSuckState == true then
+    HeadSuckState = false
+    workspace.Gravity = 196.2
+    
+    for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
+    if animTrack.Animation.AnimationId == "rbxassetid://12992262118" then
+      animTrack:Stop()
+    end
+    end
+HeadSuckSpeed = 10
+wait(0.1)
+HeadSuckSpeed = 1
+  end
+end
+
 
 local function Espectate()
   local Target = FindPlayer(TargetName)
@@ -676,6 +633,19 @@ local Bang = Tab1:CreateToggle({
 })
 
 
+local BangSpeedS = Tab1:CreateSlider({
+   Name = "BangSpeed",
+   Range = {0.01, 6},
+   Increment = 0.01,
+   Suffix = "BangSpeed",
+   CurrentValue = 1,
+   Flag = "Slider1", 
+   Callback = function(Value)
+     BangSpeed = Value
+   end,
+})
+
+
 local GetBang = Tab1:CreateToggle({
    Name = "GetBang",
    CurrentValue = false,
@@ -688,6 +658,23 @@ local GetBang = Tab1:CreateToggle({
     end
    end,
 })
+
+local GetBangSpeedS = Tab1:CreateSlider({
+   Name = "GetBangSpeed",
+   Range = {0.01, 6},
+   Increment = 0.01,
+   Suffix = "GetBangSpeed",
+   CurrentValue = 1,
+   Flag = "Slider1", 
+   Callback = function(Value)
+     GetBangSpeed = Value
+   end,
+})
+
+
+
+
+
 
 
 local HeadDance = Tab1:CreateToggle({
@@ -716,6 +703,49 @@ local Suck = Tab1:CreateToggle({
     end
    end,
 })
+
+
+local SuckSpeedS = Tab1:CreateSlider({
+   Name = "SuckSpeed",
+   Range = {0.01, 6},
+   Increment = 0.01,
+   Suffix = "SuckSpeed",
+   CurrentValue = 1,
+   Flag = "Slider1", 
+   Callback = function(Value)
+     SuckSpeed = Value
+   end,
+})
+
+
+
+local GetSuck = Tab1:CreateToggle({
+   Name = "GetSuck",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+     if Value then
+       EnableHeadSuck()
+      else
+      UnableHeadSuck()
+    end
+   end,
+})
+
+
+
+local GetSuckSpeed = Tab1:CreateSlider({
+   Name = "GetSuckSpeed",
+   Range = {0.01, 6},
+   Increment = 0.01,
+   Suffix = "GetSuckSpeed",
+   CurrentValue = 1,
+   Flag = "Slider1", 
+   Callback = function(Value)
+     HeadSuckSpeed = Value
+   end,
+})
+
 
 
 local Hug = Tab1:CreateToggle({
