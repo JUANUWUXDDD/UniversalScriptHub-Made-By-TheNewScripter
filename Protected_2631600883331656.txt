@@ -158,6 +158,8 @@ local function TpToPlayerWithName()
   end
 end
 
+
+local seguirBang = false
 local isBang = false
 local BangSpeed = 1
 
@@ -168,18 +170,27 @@ local function Bang()
     local TargetChar = Target.Character
     if TargetChar then
       local TargetHRP = TargetChar:FindFirstChild("HumanoidRootPart")
+      seguirBang = true
       if TargetHRP and h then
         task.spawn(function()
           PlayAndStopAnim(10713962506,1.4,0)
           workspace.Gravity = 0
           while isBang do
             for i = 1,6,BangSpeed do
+              if seguirBang == false then
+                break
+              elseif seguirBang == true then
               h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,i)
+              end
               wait(0.001)
             end
             for i = 6,1,-BangSpeed do
+              if seguirBang == false then
+                break
+              elseif seguirBang == true then
               h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,i)
               wait(0.001)
+              end
             end
           end
         end)
@@ -191,6 +202,7 @@ end
 local function unBang()
   if isBang then
     isBang = false
+    seguirBang = false
     h.Anchored = false
     workspace.Gravity = 196.2
 
@@ -203,6 +215,8 @@ local function unBang()
 end
 end
 
+
+local SeguirGetBang = false
 local GetBangState = false
 local GetBangSpeed = 1
 
@@ -212,19 +226,28 @@ local function GetBangg()
     local TargetChar = Target.Character
     if TargetChar then
       local TargetHRP = TargetChar:FindFirstChild("HumanoidRootPart")
+      SeguirGetBang = true
       GetBangState = true
     if TargetHRP and h then
       task.spawn(function()
         PlayAndStopAnim(10714395175,0.2,0)
         workspace.Gravity = 0
           while GetBangState do
+            if SeguirGetBang == false then
+              break
+            elseif SeguirGetBang == true then
             for i = 1,6,GetBangSpeed do
               h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-i)
               wait(0.001)
             end
+            end
             for i = 6,1,-GetBangSpeed do
+              if SeguirGetBang == false then
+                break
+              elseif SeguirGetBang == true then
               h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-i)
               wait(0.001)
+              end
             end
           end
         end)
@@ -237,6 +260,7 @@ end
 local function unGetBangg()
   if GetBangState then
     GetBangState = false
+    SeguirGetBang = false
     h.Anchored = false
     workspace.Gravity = 196.2
   wait(0.5)
@@ -248,6 +272,9 @@ local function unGetBangg()
 end
 end
 
+
+
+local SeguirChupando = false
 local ChuparState = false
 local SuckSpeed = 1
 
@@ -258,20 +285,29 @@ local function Chupar()
     if TargetChar then
       local TargetHRP = TargetChar:FindFirstChild("HumanoidRootPart")
       ChuparState = true
+      SeguirChupando = true
       if TargetHRP and h then
         task.spawn(function()
           PlayAndStopAnim(13694096724,2,0)
           workspace.Gravity = 0
           while ChuparState do
             for i = 1,6,SuckSpeed do
+              if SeguirChupando == false then
+                break
+              elseif SeguirChupando == true then
+              h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-i)
+              h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+              wait(0.001)
+              end
+            end
+            for i = 6,1,-SuckSpeed do
+              if SeguirChupando == false then
+                break
+              elseif SeguirChupando == true then
               h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-i)
               h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
               wait(0.001)
             end
-            for i = 6,1,-SuckSpeed do
-              h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-i)
-              h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-              wait(0.001)
             end
           end
         end)
@@ -283,6 +319,7 @@ end
 local function UnChupar()
   if ChuparState == true then
     ChuparState = false
+    SeguirChupando = false
     h.Anchored = false
     workspace.Gravity = 196.2
 wait(0.5)
@@ -461,6 +498,7 @@ local function UnableHeadSit()
   end
 end
 
+local SeguirHeadSuck = false
 local HeadSuckState = false
 local HeadSuckSpeed = 0.1
 
@@ -474,18 +512,27 @@ local function EnableHeadSuck()
       if TargetHead and h then
         task.spawn(function()
           HeadSuckState = true
+          SeguirHeadSuck = true
           PlayAndStopAnim(12992262118,1,0)
           workspace.Gravity = 0
           while HeadSuckState do
             for i = 1,6,HeadSuckSpeed do
+              if SeguirHeadSuck == false then
+                break
+              elseif SeguirHeadSuck == true then
               h.CFrame = TargetHead.CFrame * CFrame.new(0,-0.5,-i)
                 h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
               wait(0.0001)
+              end
             end
             for i = 6,1,-HeadSuckSpeed do
+              if SeguirHeadSuck == false then
+                break
+              elseif SeguirHeadSuck == true then
               h.CFrame = TargetHead.CFrame * CFrame.new(0,-0.5,-i)
               h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
               wait(0.0001)
+              end
             end
           end
         end)
@@ -498,6 +545,7 @@ end
 local function UnableHeadSuck()
   if HeadSuckState == true then
     HeadSuckState = false
+    SeguirHeadSuck = false
     workspace.Gravity = 196.2
     
     for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
@@ -510,6 +558,54 @@ wait(0.1)
 HeadSuckSpeed = 1
   end
 end
+
+
+local SeguirOrbitando = false
+local IsOrbit = false
+local OrbitRadio = 1
+local OrbitSpeed = 1
+
+
+local function EnableOrbit()
+  local Target = FindPlayer(TargetName)
+  if Target then
+    local TargetChar = Target.Character
+    if TargetChar then
+      local TargetHRP = TargetChar:FindFirstChild("HumanoidRootPart")
+      SeguirOrbitando = true
+      IsOrbit = true
+      if TargetHRP and h then
+        task.spawn(function()
+          workspace.Gravity = 0
+          while IsOrbit do
+            for i = 1,360,OrbitSpeed do
+              if SeguirOrbitando == false then
+                break
+              elseif SeguirOrbitando == true then
+              local rad = math.rad(i)
+              local OffSet = CFrame.new(math.cos(rad) * OrbitRadio ,0, math.sin(rad) * OrbitRadio) h.CFrame = TargetHRP.CFrame * OffSet
+              h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+              wait(0.0001)
+              end
+            end
+          end
+        end)
+      end
+    end
+  end
+end
+
+
+local function UnableOrbit()
+  if IsOrbit == true then
+    IsOrbit = false
+    SeguirOrbitando = false
+    workspace.Gravity = 196.2
+  end
+end
+
+
+
 
 
 local function Espectate()
@@ -745,6 +841,55 @@ local GetSuckSpeed = Tab1:CreateSlider({
      HeadSuckSpeed = Value
    end,
 })
+
+
+
+local Orbit = Tab1:CreateToggle({
+   Name = "Orbit",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+     if Value then
+       EnableOrbit()
+      else
+      UnableOrbit()
+    end
+   end,
+})
+
+
+
+local OrbitRadius = Tab1:CreateSlider({
+   Name = "OrbitRadius",
+   Range = {0.01, 30},
+   Increment = 0.01,
+   Suffix = "OrbitRadius",
+   CurrentValue = 1,
+   Flag = "Slider1", 
+   Callback = function(Value)
+     OrbitRadio = Value
+   end,
+})
+
+
+
+
+
+local OrbitSpeed = Tab1:CreateSlider({
+   Name = "OrbitSpeed",
+   Range = {0.01, 100},
+   Increment = 0.01,
+   Suffix = "OrbitSpeed",
+   CurrentValue = 1,
+   Flag = "Slider1", 
+   Callback = function(Value)
+     OrbitSpeed = Value
+   end,
+})
+
+
+
+
 
 
 
