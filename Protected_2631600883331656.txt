@@ -877,8 +877,8 @@ local OrbitRadius = Tab1:CreateSlider({
 
 local OrbitSpeed = Tab1:CreateSlider({
    Name = "OrbitSpeed",
-   Range = {0.01, 100},
-   Increment = 0.01,
+   Range = {0.1, 30},
+   Increment = 0.1,
    Suffix = "OrbitSpeed",
    CurrentValue = 1,
    Flag = "Slider1", 
