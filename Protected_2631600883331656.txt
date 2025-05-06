@@ -105,7 +105,7 @@ local Window = Rayfield:CreateWindow({
       FileName = "Key",
       SaveKey = false,
       GrabKeyFromSite = false,
-      Key = {"Key"}
+      Key = {OnlyOwner"}
    }
 })
 
@@ -845,6 +845,38 @@ local function UnableDash()
 end
 
 
+
+local function UnableSleepAnim(Id)
+  
+  for _, AnimTrack in ipairs(hm:GetPlayingAnimationTracks()) do
+  if AnimTrack.Animation then
+    if AnimTrack.Animation.AnimationId == Id then
+      AnimTrack:Stop()
+    end
+  end
+  end
+end
+
+local SleepConnection = nil
+local IsSleepToggle = false
+local IsSleep = false
+
+local function SleepConnect()
+SleepConnection = Uis.InputBegan:Connect(function(input)
+  if input.KeyCode == Enum.KeyCode.F then
+    if IsSleep == false then
+      IsSleep = true
+      PlayAndStopAnim(2695918332,0,1)
+    elseif IsSleep == true then
+      IsSleep = false
+      UnableSleepAnim("rbxassetid://2695918332")
+    end
+  end
+end)
+end
+
+
+
 local TpWalkState = false
 local Speed = 1
 
@@ -917,6 +949,26 @@ local Dash = Tab2:CreateToggle({
     end
    end,
 })
+
+
+local Sleep = Tab2:CreateToggle({
+   Name = "Sleep (F)",
+   CurrentValue = false,
+   Flag = "SleepToggle",
+   Callback = function(Value)
+     if Value then
+       if IsSleepToggle == false then
+         IsSleepToggle = true
+         SleepConnect()
+       end
+      else
+       IsSleepToggle = false
+       UnableSleepAnim()
+       SleepConnection:Disconnect()
+    end
+   end,
+})
+
 
 
 local TpWalk = Tab2:CreateToggle({
