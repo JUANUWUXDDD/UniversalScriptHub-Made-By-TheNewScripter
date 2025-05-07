@@ -105,7 +105,7 @@ local Window = Rayfield:CreateWindow({
       FileName = "Key",
       SaveKey = false,
       GrabKeyFromSite = false,
-      Key = {OwnerOnly"}
+      Key = {"OwnerOnly"}
    }
 })
 
@@ -637,8 +637,8 @@ local function Locate()
       local luz = TargetChar:FindFirstChild("Highlight")
       if not luz then
       local ESP = Instance.new("Highlight")
-      ESP.OutlineColor = Color3.fromRGB(255,0,0)
-      ESP.FillColor = Color3.fromRGB(255,255,255)
+      ESP.OutlineColor = Target.TeamColor.Color
+      ESP.FillColor = Target.TeamColor.Color
       ESP.Parent = TargetChar
     end
     end
@@ -669,8 +669,8 @@ local function locateALL()
       local luz = pChar:FindFirstChild("Highlight")
       if not luz then
         local ESP = Instance.new("Highlight")
-        ESP.OutlineColor = Color3.fromRGB(255,0,0)
-        ESP.FillColor = Color3.fromRGB(255,255,255)
+        ESP.OutlineColor = p.TeamColor.Color
+        ESP.FillColor = p.TeamColor.Color
         ESP.Parent = pChar
       end
     end
@@ -1182,6 +1182,7 @@ local function GetNearestPlayer()
     if p == localPlayer then
       print("Excluido el localPlayer")
     else
+      if p.TeamColor.Color ~= localPlayer.TeamColor.Color then
     local pChar = p.Character
     if pChar then
       local pHRP = pChar:FindFirstChild("HumanoidRootPart")
@@ -1191,6 +1192,7 @@ local function GetNearestPlayer()
           Distancia_MasCorta = distancia
           nearestPlayer = p.Name
           print("el jugador mas cercano es".. p.Name)
+          end
         end
         end
       end
@@ -1208,6 +1210,9 @@ local function EnableAimbot()
     while aimbotState do
       GetNearestPlayer()
       local Target = Players:FindFirstChild(nearestPlayer)
+      if Target and Target.TeamColor == localPlayer.TeamColor then
+        print("equipo local escluido del aimbot")
+      else
       if Target and Target.Character then
         local TargetHRP = Target.Character:FindFirstChild("HumanoidRootPart")
         if TargetHRP then
@@ -1215,9 +1220,10 @@ local function EnableAimbot()
           local LookAt = Vector3.new(TargetPosition.X , h.Position.Y , TargetPosition.Z)
           h.CFrame = CFrame.lookAt(h.Position, LookAt)
           camera.CFrame = CFrame.lookAt(camera.CFrame.Position, TargetPosition)
-          task.wait(0.01)
+          end
         end
       end
+      task.wait(0.001)
     end
   end)
 end
@@ -1408,4 +1414,4 @@ Players.PlayerAdded:Connect(function(plr)
       EnableHitbox()
     end
   end)
-end) --[Provicional Para que solo yo pueda usarlo] 
+end) --[Provicional Para que solo yo pueda usarlo]
