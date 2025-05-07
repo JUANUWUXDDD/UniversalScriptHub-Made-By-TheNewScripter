@@ -1075,6 +1075,30 @@ local function UnableTpWalk()
     TpWalkState = false
   end
 end
+
+local ShiftLockState = false
+
+local function EnableShiftLock()
+  task.spawn(function()
+    ShiftLockState = true
+  while ShiftLockState do
+    local LookVector = camera.CFrame.LookVector
+    local offSet = Vector3.new(LookVector.X, 0 ,LookVector.Z)
+  h.CFrame = CFrame.new(h.Position, h.Position + offSet)
+  task.wait(0.0001)
+  end
+  end)
+end
+
+
+local function UnableShiftLock()
+  if ShiftLockState == true then
+    ShiftLockState = false
+  end
+end
+
+
+
 --//Tab2_LocalPlayer
 
 local Section1Tab2 = Tab2:CreateSection("LocalPlayer")
@@ -1143,6 +1167,23 @@ local Sleep = Tab2:CreateToggle({
     end
    end,
 })
+
+
+local ShiftLock = Tab2:CreateToggle({
+   Name = "ShiftLock",
+   CurrentValue = false,
+   Flag = "ShiftLockToggle",
+   Callback = function(Value)
+     if Value then
+       EnableShiftLock()
+      else
+       UnableShiftLock()
+    end
+   end,
+})
+
+
+
 
 
 
