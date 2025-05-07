@@ -175,6 +175,7 @@ local function Bang()
         task.spawn(function()
           PlayAndStopAnim(10713962506,1.4,0)
           workspace.Gravity = 0
+          hm.PlatformStand = true
           while isBang do
             for i = 1,6,BangSpeed do
               if seguirBang == false then
@@ -205,6 +206,7 @@ local function unBang()
     seguirBang = false
     h.Anchored = false
     workspace.Gravity = 196.2
+    hm.PlatformStand = false
 
   wait(0.5)
   for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
@@ -232,6 +234,7 @@ local function GetBangg()
       task.spawn(function()
         PlayAndStopAnim(10714395175,0.2,0)
         workspace.Gravity = 0
+        hm.PlatformStand = true
           while GetBangState do
             if SeguirGetBang == false then
               break
@@ -263,6 +266,7 @@ local function unGetBangg()
     SeguirGetBang = false
     h.Anchored = false
     workspace.Gravity = 196.2
+    hm.PlatformStand = false
   wait(0.5)
   for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
     if animTrack.Animation.AnimationId == "rbxassetid://10714395175" then
@@ -290,6 +294,7 @@ local function Chupar()
         task.spawn(function()
           PlayAndStopAnim(13694096724,2,0)
           workspace.Gravity = 0
+          hm.PlatformStand = true
           while ChuparState do
             for i = 1,6,SuckSpeed do
               if SeguirChupando == false then
@@ -322,6 +327,7 @@ local function UnChupar()
     SeguirChupando = false
     h.Anchored = false
     workspace.Gravity = 196.2
+    hm.PlatformStand = false
 wait(0.5)
   
 for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
@@ -346,6 +352,7 @@ local function EnableHeadDance()
         task.spawn(function()
           PlayAndStopAnim(15122972413,1,1)
           workspace.Gravity = 0
+          hm.PlatformStand = true
           while HeadDanceState do
             h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,3,0)
@@ -363,6 +370,7 @@ local function UnableHeadDance()
   if HeadDanceState == true then
     HeadDanceState = false
     workspace.Gravity = 196.2
+    hm.PlatformStand = false
     for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
     if animTrack.Animation.AnimationId == "rbxassetid://15122972413" then
       animTrack:Stop()
@@ -385,6 +393,7 @@ local function EnableHug()
         task.spawn(function()
           PlayAndStopAnim(15392759696,1,0)
           workspace.Gravity = 0
+          hm.PlatformStand = true
           while HugState do
             h.Anchored = false
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-1)
@@ -405,6 +414,7 @@ local function UnableHug()
     HugState = false
     h.Anchored = false
     workspace.Gravity = 196.2
+    hm.PlatformStand = false
     
     
     for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
@@ -428,6 +438,7 @@ local function EnableBackHug()
         task.spawn(function()
           PlayAndStopAnim(15392759696,1,0)
           workspace.Gravity = 0
+          hm.PlatformStand = true
           while HugState do
             h.Anchored = false
             h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,1)
@@ -448,6 +459,7 @@ local function UnableBackHug()
     HugState = false
     h.Anchored = false
     workspace.Gravity = 196.2
+    hm.PlatformStand = false
     
     
     for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
@@ -472,6 +484,7 @@ local function EnableHeadSit()
         task.spawn(function()
           PlayAndStopAnim(12507085924,2.4,0)
           workspace.Gravity = 0
+          hm.PlatformStand = true
           while HeadSitState do
             h.Anchored = false
             h.CFrame = TargetHead.CFrame * CFrame.new(0,3,0)
@@ -489,6 +502,7 @@ local function UnableHeadSit()
   if HeadSitState == true then
     HeadSitState = false
     workspace.Gravity = 196.2
+    hm.PlatformStand = false
     
     for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
     if animTrack.Animation.AnimationId == "rbxassetid://12507085924" then
@@ -515,6 +529,7 @@ local function EnableHeadSuck()
           SeguirHeadSuck = true
           PlayAndStopAnim(12992262118,1,0)
           workspace.Gravity = 0
+          hm.PlatformStand = true
           while HeadSuckState do
             for i = 1,6,HeadSuckSpeed do
               if SeguirHeadSuck == false then
@@ -546,6 +561,7 @@ local function UnableHeadSuck()
   if HeadSuckState == true then
     HeadSuckState = false
     SeguirHeadSuck = false
+    hm.PlatformStand = false
     workspace.Gravity = 196.2
     
     for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
@@ -577,6 +593,7 @@ local function EnableOrbit()
       if TargetHRP and h then
         task.spawn(function()
           workspace.Gravity = 0
+          hm.PlatformStand = true
           while IsOrbit do
             for i = 1,360,OrbitSpeed do
               if SeguirOrbitando == false then
@@ -585,9 +602,10 @@ local function EnableOrbit()
               local rad = math.rad(i)
               local OffSet = CFrame.new(math.cos(rad) * OrbitRadio ,0, math.sin(rad) * OrbitRadio) h.CFrame = TargetHRP.CFrame * OffSet
               h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-              wait(0.0001)
+              task.wait(0.0001)
               end
             end
+            task.wait(0.0001)
           end
         end)
       end
@@ -601,6 +619,7 @@ local function UnableOrbit()
     IsOrbit = false
     SeguirOrbitando = false
     workspace.Gravity = 196.2
+    hm.PlatformStand = false
   end
 end
 
