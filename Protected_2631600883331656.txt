@@ -176,23 +176,21 @@ local function Bang()
           PlayAndStopAnim(10713962506,1.4,0)
           workspace.Gravity = 0
           hm.PlatformStand = true
+          local i = -6
+          local D = -1
           while isBang do
-            for i = 1,6,BangSpeed do
-              if seguirBang == false then
-                break
-              elseif seguirBang == true then
-              h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,i)
-              end
-              wait(0.001)
+            i = i + (BangSpeed * D)
+            
+            if i <= -6 then
+              i = -6
+              D = 1
+            elseif i >= -1 then
+              i = -1
+              D = -1
             end
-            for i = 6,1,-BangSpeed do
-              if seguirBang == false then
-                break
-              elseif seguirBang == true then
-              h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,i)
-              wait(0.001)
-              end
-            end
+            
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-i)
+            task.wait(0.0001)
           end
         end)
       end
@@ -208,7 +206,6 @@ local function unBang()
     workspace.Gravity = 196.2
     hm.PlatformStand = false
 
-  wait(0.5)
   for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
     if animTrack.Animation.AnimationId == "rbxassetid://10713962506" then
       animTrack:Stop()
@@ -235,23 +232,22 @@ local function GetBangg()
         PlayAndStopAnim(10714395175,0.2,0)
         workspace.Gravity = 0
         hm.PlatformStand = true
+        
+        local i = -6
+        local D = -1
           while GetBangState do
-            if SeguirGetBang == false then
-              break
-            elseif SeguirGetBang == true then
-            for i = 1,6,GetBangSpeed do
-              h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-i)
-              wait(0.001)
+            i = i + (GetBangSpeed * D)
+            
+            if i >= -1 then
+              i = -1
+              D = -1
+            elseif i <= -6 then
+              i = -6
+              D = 1
             end
-            end
-            for i = 6,1,-GetBangSpeed do
-              if SeguirGetBang == false then
-                break
-              elseif SeguirGetBang == true then
-              h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-i)
-              wait(0.001)
-              end
-            end
+            
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,i)
+            task.wait(0.0001)
           end
         end)
     end
@@ -267,7 +263,7 @@ local function unGetBangg()
     h.Anchored = false
     workspace.Gravity = 196.2
     hm.PlatformStand = false
-  wait(0.5)
+    
   for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
     if animTrack.Animation.AnimationId == "rbxassetid://10714395175" then
       animTrack:Stop()
@@ -295,25 +291,25 @@ local function Chupar()
           PlayAndStopAnim(13694096724,2,0)
           workspace.Gravity = 0
           hm.PlatformStand = true
+          
+          
+          local i = 1
+          local D = -1
+          
           while ChuparState do
-            for i = 1,6,SuckSpeed do
-              if SeguirChupando == false then
-                break
-              elseif SeguirChupando == true then
-              h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-i)
-              h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-              wait(0.001)
-              end
+            i = i + (SuckSpeed * D)
+            
+            if i >= -2 then
+              i = -2
+              D = -1
+            elseif i <= -6 then
+              i = -6
+              D = 1
             end
-            for i = 6,1,-SuckSpeed do
-              if SeguirChupando == false then
-                break
-              elseif SeguirChupando == true then
-              h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-i)
-              h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-              wait(0.001)
-            end
-            end
+            
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,-0.5,i)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
+            task.wait(0.0001)
           end
         end)
       end
@@ -328,7 +324,6 @@ local function UnChupar()
     h.Anchored = false
     workspace.Gravity = 196.2
     hm.PlatformStand = false
-wait(0.5)
   
 for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
     if animTrack.Animation.AnimationId == "rbxassetid://13694096724" then
@@ -530,25 +525,24 @@ local function EnableHeadSuck()
           PlayAndStopAnim(12992262118,1,0)
           workspace.Gravity = 0
           hm.PlatformStand = true
+          
+          local i = -1
+          local D = -1
+          
           while HeadSuckState do
-            for i = 1,6,HeadSuckSpeed do
-              if SeguirHeadSuck == false then
-                break
-              elseif SeguirHeadSuck == true then
-              h.CFrame = TargetHead.CFrame * CFrame.new(0,-0.5,-i)
-                h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-              wait(0.0001)
-              end
+            i = i + (HeadSuckSpeed * D)
+            
+            if i >= -1 then
+              i = -1
+              D = -1
+            elseif i <= -6 then
+              i = -6
+              D = 1
             end
-            for i = 6,1,-HeadSuckSpeed do
-              if SeguirHeadSuck == false then
-                break
-              elseif SeguirHeadSuck == true then
-              h.CFrame = TargetHead.CFrame * CFrame.new(0,-0.5,-i)
-              h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
-              wait(0.0001)
-              end
-            end
+            
+            h.CFrame = TargetHead.CFrame * CFrame.new(0,0,i)
+            h.CFrame = CFrame.lookAt(h.Position, TargetHead.Position)
+            task.wait(0.0001)
           end
         end)
       end
@@ -594,16 +588,16 @@ local function EnableOrbit()
         task.spawn(function()
           workspace.Gravity = 0
           hm.PlatformStand = true
+          local i = 0
           while IsOrbit do
-            for i = 1,360,OrbitSpeed do
-              if SeguirOrbitando == false then
-                break
-              elseif SeguirOrbitando == true then
+            if IsOrbit == false then
+              break
+            elseif IsOrbit == true then
+              i = (i+ OrbitSpeed) % 360
               local rad = math.rad(i)
-              local OffSet = CFrame.new(math.cos(rad) * OrbitRadio ,0, math.sin(rad) * OrbitRadio) h.CFrame = TargetHRP.CFrame * OffSet
+              local OffSet = CFrame.new(math.cos(rad) * OrbitRadio ,0,math.sin(rad) * OrbitRadio)
+              h.CFrame = TargetHRP.CFrame * OffSet
               h.CFrame = CFrame.lookAt(h.Position, TargetHRP.Position)
-              task.wait(0.0001)
-              end
             end
             task.wait(0.0001)
           end
