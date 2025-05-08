@@ -659,12 +659,6 @@ local function UnableFollow()
 end
 
 
-
-
-
-
-
-
 local function Espectate()
   local Target = FindPlayer(TargetName)
   if Target then
