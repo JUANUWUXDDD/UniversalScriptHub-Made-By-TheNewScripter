@@ -563,9 +563,6 @@ local function UnableHeadSuck()
       animTrack:Stop()
     end
     end
-HeadSuckSpeed = 10
-wait(0.1)
-HeadSuckSpeed = 1
   end
 end
 
@@ -616,6 +613,53 @@ local function UnableOrbit()
     hm.PlatformStand = false
   end
 end
+
+local FollowState = false
+local FollowDistanceVar = 2
+
+
+
+local function EnableFollow()
+  local Target = FindPlayer(TargetName)
+  if Target then
+    local TargetChar = Target.Character
+    if TargetChar then
+      local TargetHRP = TargetChar:FindFirstChild("HumanoidRootPart")
+      if TargetHRP and h then
+        task.spawn(function()
+          FollowState = true
+          workspace.Gravity = 0
+          hm.PlatformStand = true
+          PlayAndStopAnim(10714347256,1.3,0)
+          while FollowState do
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,FollowDistanceVar)
+            task.wait(0.0001)
+          end
+        end)
+      end
+    end
+  end
+end
+
+
+local function UnableFollow()
+  if FollowState == true then
+    FollowState = false
+    workspace.Gravity = 196.2
+    hm.PlatformStand = false
+    
+    
+    for _, animTrack in ipairs(hm:GetPlayingAnimationTracks()) do
+    if animTrack.Animation.AnimationId == "rbxassetid://10714347256" then
+      animTrack:Stop()
+    end
+    end
+    
+  end
+end
+
+
+
 
 
 
@@ -897,6 +941,33 @@ local OrbitSpeed = Tab1:CreateSlider({
    Flag = "Slider1", 
    Callback = function(Value)
      OrbitSpeed = Value
+   end,
+})
+
+
+local Follow = Tab1:CreateToggle({
+   Name = "FollowPlayer",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+     if Value then
+       EnableFollow()
+      else
+      UnableFollow()
+    end
+   end,
+})
+
+
+local FollowDistance = Tab1:CreateSlider({
+   Name = "FollowDistance",
+   Range = {2, 200},
+   Increment = 1,
+   Suffix = "Distance",
+   CurrentValue = 2,
+   Flag = "Slider1", 
+   Callback = function(Value)
+     FollowDistanceVar = Value
    end,
 })
 
