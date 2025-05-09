@@ -1,5 +1,7 @@
 local customTheme = {
+
     TextColor = Color3.fromRGB(220, 220, 220),
+
 
     Background = Color3.fromRGB(15, 15, 15),
     Topbar = Color3.fromRGB(25, 25, 25),
@@ -661,6 +663,7 @@ end
 
 local FlingStatus = false
 local SavedFlingPos = nil
+local flingPower = 10000
 
 
 local function EnableFling()
@@ -670,15 +673,21 @@ local function EnableFling()
     if TargetChar then
       local TargetHRP = TargetChar:FindFirstChild("HumanoidRootPart")
       if TargetHRP and h then
+        TargetHRP.CanCollide = false
+        local Torso = TargetChar:FindFirstChild("UpperTorso") or TargetChar:FindFirstChild("Torso")
+        if Torso then
+          Torso.CanCollide = false
+        end
+        
         task.spawn(function()
           SavedFlingPos = h.CFrame
           FlingStatus = true
           while FlingStatus do
           h.AssemblyLinearVelocity = Vector3.new(10000, 10000, 10000)
-            h.CFrame = TargetHRP.CFrame
-            task.wait(0.0001)
-            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-6)
-              task.wait(0.01)
+          h.CFrame = TargetHRP.CFrame
+          task.wait(0.0001)
+          h.CFrame = TargetHRP.CFrame * CFrame.new(0,0.2,0)
+          task.wait(0.0001)
           end
         end)
       end
@@ -690,7 +699,7 @@ end
 local function UnableFling()
   if FlingStatus == true then
     FlingStatus = false
-    for i = 1,50,1 do
+    for i = 1,25,1 do
     h.Anchored = true
     h.CFrame = SavedFlingPos
     h.AssemblyLinearVelocity = Vector3.new(0,0,0)
@@ -821,6 +830,7 @@ local Fling = Tab1:CreateToggle({
    Flag = "Toggle1",
    Callback = function(Value)
      if Value then
+     
        EnableFling()
       else
       UnableFling()
@@ -1597,4 +1607,4 @@ Players.PlayerAdded:Connect(function(plr)
       EnableHitbox()
     end
   end)
-end) --[Provicional Para que solo yo pueda usarlo]
+end)
