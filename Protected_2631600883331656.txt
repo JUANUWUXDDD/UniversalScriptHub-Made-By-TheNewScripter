@@ -672,10 +672,12 @@ local function EnableFling()
       if TargetHRP and h then
         task.spawn(function()
           SavedFlingPos = h.CFrame
-          h.AssemblyLinearVelocity = Vector3.new(10000, 10000, 10000)
           FlingStatus = true
           while FlingStatus do
+          h.AssemblyLinearVelocity = Vector3.new(10000, 10000, 10000)
             h.CFrame = TargetHRP.CFrame
+            task.wait(0.0001)
+            h.CFrame = TargetHRP.CFrame * CFrame.new(0,0,-6)
               task.wait(0.01)
           end
         end)
@@ -688,13 +690,16 @@ end
 local function UnableFling()
   if FlingStatus == true then
     FlingStatus = false
-    h.CFrame = SavedFlingPos
-   task.wait(0.0001)
+    for i = 1,50,1 do
     h.Anchored = true
+    h.CFrame = SavedFlingPos
     h.AssemblyLinearVelocity = Vector3.new(0,0,0)
-    wait(3)
+    task.wait(0.001)
     h.Anchored = false
     h.CFrame = SavedFlingPos
+    h.AssemblyLinearVelocity = Vector3.new(0,0,0)
+    task.wait(0.0001)
+    end
   end
 end
 
