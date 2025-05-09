@@ -805,7 +805,68 @@ local Input = Tab1:CreateInput({
 local Section2Tab1 = Tab1:CreateSection("Functions")
 
 
+local Teleport = Tab1:CreateButton({
+   Name = "Teleport",
+   Callback = function()
+     TpToPlayerWithName()
+   end,
+})
 
+
+local Fling = Tab1:CreateToggle({
+   Name = "Fling",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+     if Value then
+       EnableFling()
+      else
+      UnableFling()
+    end
+   end,
+})
+
+
+
+local Bang = Tab1:CreateToggle({
+   Name = "Bang",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+     if Value then
+       Bang()
+      else
+      unBang()
+    end
+   end,
+})
+
+
+local BangSpeedS = Tab1:CreateSlider({
+   Name = "BangSpeed",
+   Range = {0.01, 6},
+   Increment = 0.01,
+   Suffix = "BangSpeed",
+   CurrentValue = 1,
+   Flag = "Slider1", 
+   Callback = function(Value)
+     BangSpeed = Value
+   end,
+})
+
+
+local GetBang = Tab1:CreateToggle({
+   Name = "GetBang",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+     if Value then
+       GetBangg()
+      else
+      unGetBangg()
+    end
+   end,
+})
 
 local GetBangSpeedS = Tab1:CreateSlider({
    Name = "GetBangSpeed",
