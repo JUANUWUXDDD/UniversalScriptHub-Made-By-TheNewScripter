@@ -659,6 +659,52 @@ local function UnableFollow()
 end
 
 
+local FlingStatus = false
+local SavedFlingPos = nil
+
+
+local function EnableFling()
+  local Target = FindPlayer(TargetName)
+  if Target then
+    local TargetChar = Target.Character
+    if TargetChar then
+      local TargetHRP = TargetChar:FindFirstChild("HumanoidRootPart")
+      if TargetHRP and h then
+        task.spawn(function()
+          SavedFlingPos = h.CFrame
+          FlingStatus = true
+          while FlingStatus do
+          h.AssemblyLinearVelocity = Vector3.new(10000, 10000, 10000)
+            h.CFrame = TargetHRP.CFrame
+              task.wait(0.01)
+          end
+        end)
+      end
+    end
+  end
+end
+
+
+local function UnableFling()
+  if FlingStatus == true then
+    FlingStatus = false
+    for i = 1,50,1 do
+    h.Anchored = true
+    h.CFrame = SavedFlingPos
+    h.AssemblyLinearVelocity = Vector3.new(0,0,0)
+    task.wait(0.001)
+    h.Anchored = false
+    h.CFrame = SavedFlingPos
+    h.AssemblyLinearVelocity = Vector3.new(0,0,0)
+    task.wait(0.0001)
+    end
+  end
+end
+
+
+
+
+
 local function Espectate()
   local Target = FindPlayer(TargetName)
   if Target then
@@ -765,6 +811,22 @@ local Teleport = Tab1:CreateButton({
      TpToPlayerWithName()
    end,
 })
+
+
+local Fling = Tab1:CreateToggle({
+   Name = "Fling",
+   CurrentValue = false,
+   Flag = "Toggle1",
+   Callback = function(Value)
+     if Value then
+       EnableFling()
+      else
+      UnableFling()
+    end
+   end,
+})
+
+
 
 local Bang = Tab1:CreateToggle({
    Name = "Bang",
