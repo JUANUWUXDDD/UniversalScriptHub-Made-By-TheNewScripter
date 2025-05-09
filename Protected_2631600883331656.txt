@@ -712,7 +712,7 @@ local function UnableFling()
   end
 end
 
-
+local SpectateState = false
 
 
 
@@ -724,6 +724,7 @@ local function Espectate()
       local TargetHead = TargetChar:FindFirstChild("Head")
       if TargetHead then
         camera.CameraSubject = TargetHead
+         SpectateState = true
       end
     end
   end
@@ -731,6 +732,7 @@ end
 
 local function unSpectate()
   camera.CameraSubject = hm
+  SpectateState = false
 end
 
 local locateState = false
@@ -825,7 +827,7 @@ local Teleport = Tab1:CreateButton({
 
 
 local Fling = Tab1:CreateToggle({
-   Name = "Fling",
+   Name = "Fling (wait 1 seg to disable)",
    CurrentValue = false,
    Flag = "Toggle1",
    Callback = function(Value)
@@ -1597,12 +1599,40 @@ else
 end
 end)
 
+
+
+for _, p in ipairs(Players:GetPlayers()) do
+p.CharacterAdded:Connect(function()
+
+if LocateAllState == true then
+      LocateAll()
+    end
+    
+    if SpectateState == true then
+         Espectate()
+    end
+
+
+    if HitboxStatus == true then
+      EnableHitbox()
+    end
+end)
+end
+
+
+
+
 Players.PlayerAdded:Connect(function(plr)
   plr.CharacterAdded:Connect(function()
     if LocateAllState == true then
       LocateAll()
     end
     
+    if SpectateState == true then
+         Espectate()
+    end
+
+
     if HitboxStatus == true then
       EnableHitbox()
     end
