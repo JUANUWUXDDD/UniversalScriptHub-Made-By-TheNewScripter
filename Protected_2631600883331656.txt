@@ -671,10 +671,10 @@ local function EnableFling()
   if Target then
     local TargetChar = Target.Character
     if TargetChar then
-      local TargetHRP = TargetChar:FindFirstChild("HumanoidRootPart")
+      local TargetHRP = TargetChar:FindFirstChild("HumanoidRootPart")or TargetChar:FindFirstChild("HumanoidRootPart")
       if TargetHRP and h then
         TargetHRP.CanCollide = false
-        local Torso = TargetChar:FindFirstChild("UpperTorso") or TargetChar:FindFirstChild("Torso")
+        local Torso = TargetChar:FindFirstChild("UpperTorso") or TargetChar:FindFirstChild("Torso")or TargetChar:WaitForChild("UpperTorso") or TargetChar:WaitForChild("Torso")
         if Torso then
           Torso.CanCollide = false
         end
@@ -685,8 +685,10 @@ local function EnableFling()
           while FlingStatus do
           h.AssemblyLinearVelocity = Vector3.new(10000, 10000, 10000)
           h.CFrame = TargetHRP.CFrame
+          h.CFrame = h.CFrame * CFrame.Angles(math.rad(0,360),math.rad(0,360),math.rad(0,360))
           task.wait(0.0001)
           h.CFrame = TargetHRP.CFrame * CFrame.new(0,0.2,0)
+          h.CFrame = h.CFrame * CFrame.Angles(math.rad(0,360),math.rad(0,360),math.rad(0,360))
           task.wait(0.0001)
           end
         end)
@@ -721,7 +723,7 @@ local function Espectate()
   if Target then
     local TargetChar = Target.Character
     if TargetChar then
-      local TargetHead = TargetChar:FindFirstChild("Head")
+      local TargetHead = TargetChar:FindFirstChild("Head")or TargetChar:WaitForChild("Head")
       if TargetHead then
         camera.CameraSubject = TargetHead
          SpectateState = true
@@ -1597,6 +1599,12 @@ if LocateAllState == true then
 else 
   print("se intento reactivar denuevo el LocateAll pero la Condicion no se cumplio")
 end
+
+    if FlingStatus == true then
+    UnableFling()
+    wait(0.001)
+    EnableFling()
+    end
 end)
 
 
@@ -1615,6 +1623,12 @@ if LocateAllState == true then
 
     if HitboxStatus == true then
       EnableHitbox()
+    end
+    
+    if FlingStatus == true then
+    UnableFling()
+    wait(0.001)
+    EnableFling()
     end
 end)
 end
@@ -1635,6 +1649,12 @@ Players.PlayerAdded:Connect(function(plr)
 
     if HitboxStatus == true then
       EnableHitbox()
+    end
+    
+    if FlingStatus == true then
+    UnableFling()
+    wait(0.001)
+    EnableFling()
     end
   end)
 end)
