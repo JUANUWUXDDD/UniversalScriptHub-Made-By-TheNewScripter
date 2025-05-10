@@ -688,7 +688,7 @@ local function EnableFling()
           h.CFrame = h.CFrame * CFrame.Angles(math.rad(0,360),math.rad(0,360),math.rad(0,360))
           task.wait(0.0001)
           h.CFrame = TargetHRP.CFrame * CFrame.new(0,0.2,0)
-          h.CFrame = h.CFrame * CFrame.Angles(math.rad(0,360),math.rad(0,360),math.rad(0,360))
+          h.CFrame = h.CFrame * CFrame.Angles(math.rad(math.random(0,360)),math.rad(math.random(0,360)),math.rad(math.random(0,360)))
           task.wait(0.0001)
           end
         end)
